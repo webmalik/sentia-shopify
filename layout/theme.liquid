@@ -48,7 +48,7 @@
     %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {% comment %} {{ 'app.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {{ 'app.min.css' | asset_url | stylesheet_tag }}
     {{ 'custom-style.css' | asset_url | stylesheet_tag }}
 
 
@@ -148,7 +148,7 @@
 		<script>
 			window.customer = {{ customer.id }};
 			window.add_to_cart = `{{ 'products.product.add_to_cart' | t }}`;
-			window.update_customer = `{{ 'customer.account_content.update_success' | t }}`;
+			{% comment %} window.update_customer = `{{ 'customer.account_content.update_success' | t }}`; {% endcomment %}
 		</script>
 	{% else %}
 		<script>

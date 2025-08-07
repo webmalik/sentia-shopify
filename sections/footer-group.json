@@ -13,19 +13,50 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "footer_column_9DFHfA": {
+          "type": "footer_column",
+          "settings": {
+            "title": "Company",
+            "menu": "footer"
+          }
+        },
+        "footer_column_YjUedW": {
+          "type": "footer_column",
+          "settings": {
+            "title": "Products",
+            "menu": "products"
+          }
+        },
+        "footer_column_D4r8Ej": {
+          "type": "footer_column",
+          "settings": {
+            "title": "Info",
+            "menu": "customer-account-main-menu"
+          }
+        },
+        "footer_column_MFbbzq": {
+          "type": "footer_column",
+          "settings": {
+            "title": "Social",
+            "menu": "social"
+          }
+        }
+      },
+      "block_order": [
+        "footer_column_9DFHfA",
+        "footer_column_YjUedW",
+        "footer_column_D4r8Ej",
+        "footer_column_MFbbzq"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "logo": "shopify://shop_images/logo.svg",
+        "subscribe_text": "Sign up to receive updates about our products and collaborations.",
+        "placeholder": "Your email",
+        "policy_text": "By signing up, you agree to our Privacy Policy",
+        "copyright": "© 2025 Sentia Home. All rights reserved",
+        "author_link": "",
+        "author_label": ""
       }
     }
   },
