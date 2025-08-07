@@ -1,0 +1,64 @@
+<div data-fls-mycard="" class="mycard">
+	<div class="mycard__wrapper">
+		<div class="mycard__body">
+			<div class="mycard__content">
+				<div class="mycard__header">
+					<h2 class="mycard__title">{{ 'templates.cart.cart' | t }}</h2>
+					<button type="button" class="mycard__close"></button>
+				</div>
+				<div class="mycard__items">
+					
+				</div>
+				<div class="mycard__footer">
+					<div class="mycard__total-block">
+						<div class="mycard__total-text">{{ 'templates.cart.subtotal' | t }}</div>
+						<div class="mycard__total-price">500$</div>
+					</div>
+					<div class="mycard__button-block">
+						<button data-fls-button="" class="button button--dark mycard__button-checkout">{{ 'templates.cart.checkout' | t }}</button>
+					</div>
+					<div class="mycard__step-text">{{ 'templates.cart.step' | t }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/template" id="cart-item-template">
+  <div data-fls-addtocart-product class="mycard__item item-mycard cart__item" data-fls-cart-key="[[key]]">
+    <a href="#" class="item-mycard__left">
+      <img src="" data-fls-addtocart-image class="item-mycard__image ibg ibg--contain" alt="Image" data-cart-img>
+    </a>
+    <div class="item-mycard__right">
+      <div class="item-mycard__headline-and-quantity">
+        <h2 class="item-mycard__headline">[[title]]</h2>
+        <div class="item-mycard__size-block">
+          <div class="item-mycard__size-headline">Size:</div>
+          <div class="item-mycard__size-items">
+            <div class="item-mycard__size-item">[[variant_title]]</div>
+          </div>
+        </div>
+        <div data-fls-quantity class="item-mycard__quantity">
+          <button data-fls-quantity-minus type="button" class="item-mycard__button item-mycard__button--minus" data-cart-minus></button>
+          <div class="item-mycard__input-block">
+            <input class="item-mycard__input-quantity"
+                   data-fls-addtocart-quantity
+                   data-fls-quantity-value
+                   type="text"
+                   name="updates[]"
+                   value="[[quantity]]"
+                   autocomplete="off">
+          </div>
+          <button data-fls-quantity-plus type="button" class="item-mycard__button item-mycard__button--plus" data-cart-plus></button>
+        </div>
+      </div>
+      <div class="item-mycard__price-and-trash">
+        <div class="item-mycard__price">[[price]]</div>
+        <button type="button" class="item-mycard__trash --icon-trash" data-cart-remove></button>
+      </div>
+    </div>
+  </div>
+</script>
+
+
+<script src="{{ 'cart-custom.js' | asset_url }}" defer="defer"></script>

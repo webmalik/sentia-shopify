@@ -89,7 +89,7 @@
         </select>
 
         <div class="actions-header__icons">
-          <a href="" class="actions-header__bookmarks">
+          <a href="{{ section.settings.wishlist_url }}" class="actions-header__bookmarks">
             <span class="--icon-heart"></span>
             <span class="--icon-heart-hover"></span>
           </a>
@@ -150,6 +150,11 @@
       "type": "link_list",
       "id": "main_menu",
       "label": "Main menu"
+    },
+    {
+      "type": "url",
+      "id": "wishlist_url",
+      "label": "Wishlist URL"
     }
   ],
   "blocks": [
