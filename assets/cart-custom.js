@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cartContainer = document.querySelector('#fls-cart-items');
-    const subtotalElement = document.querySelector('.cart__subtotal-price');
+    const cartContainer = document.querySelector('.mycard__items');
+    const subtotalElement = document.querySelector('.mycard__total-price');
     const template = document.querySelector('#cart-item-template');
 
     if (!cartContainer || !template) return;
@@ -17,25 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
             maximumFractionDigits: 0,
         }).format(amount / 100);
 
-    const createCartItem = ({ key, product_title, image, quantity, line_price }) => {
-        const safeQty = Math.max(1, parseInt(quantity) || 1);
-        const imgSrc =
-            typeof image === 'string'
-                ? image
-                : image?.src || 'https://cdn.shopify.com/s/files/1/0000/0001/files/no-image.jpg';
-
+    const createCartItem = (item) => {
+        const { key, product_title, quantity, line_price, variant_title, image } = item;
+        console.log(item);
         const html = templateHTML
-            .replaceAll('[[key]]', key || '')
-            .replaceAll('[[title]]', product_title || 'Untitled')
-            .replaceAll('[[price]]', formatPrice(line_price || 0))
-            .replaceAll('[[quantity]]', safeQty);
+            .replaceAll('[[key]]', key)
+            .replaceAll('[[title]]', product_title)
+            .replaceAll('[[price]]', formatPrice(line_price))
+            .replaceAll('[[quantity]]', quantity)
+            .replaceAll('[[variant_title]]', variant_title || '');
 
         const wrapper = document.createElement('div');
         wrapper.innerHTML = html;
         const itemNode = wrapper.firstElementChild;
 
         const img = itemNode.querySelector('[data-cart-img]');
-        if (img) img.setAttribute('src', imgSrc);
+        if (img && image) img.setAttribute('src', image);
 
         return itemNode;
     };
@@ -48,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cartContainer.innerHTML = '';
 
-            if (!Array.isArray(cart.items) || cart.items.length === 0) {
+            if (!cart.items?.length) {
                 cartContainer.innerHTML = '<div class="cart__empty">Your cart is empty</div>';
                 subtotalElement.textContent = formatPrice(0);
                 return;
@@ -96,12 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const bindCartEvents = () => {
-        cartContainer.querySelectorAll('.cart__item').forEach((item) => {
-            const key = item.dataset.cartKey;
+        cartContainer.querySelectorAll('.item-mycard').forEach((item) => {
+            const key = item.dataset.flsCartKey;
             const input = item.querySelector('input');
-            const minus = item.querySelector('[data-cart-minus]');
-            const plus = item.querySelector('[data-cart-plus]');
-            const remove = item.querySelector('[data-cart-remove]');
+            const minus = item.querySelector('[data-fls-quantity-minus]');
+            const plus = item.querySelector('[data-fls-quantity-plus]');
+            const remove = item.querySelector('.item-mycard__trash');
 
             if (!key || !input) return;
 
@@ -113,11 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             minus?.addEventListener('click', () => {
                 let qty = parseInt(input.value) || 1;
-                if (qty > 1) {
-                    changeItemQty(key, qty - 1);
-                } else {
-                    changeItemQty(key, 0);
-                }
+                changeItemQty(key, qty > 1 ? qty - 1 : 0);
             });
 
             input?.addEventListener('change', () => {
@@ -134,10 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Відкрити кошик при події
     document.addEventListener('cart:open', renderCart);
     window.addEventListener('cartToggled', (e) => {
         if (e.detail?.isOpen) renderCart();
     });
 
+    // Автозавантаження
     renderCart();
 });

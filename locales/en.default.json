@@ -317,7 +317,8 @@
                 "price": "Price",
                 "total": "Total",
                 "quantity": "Quantity",
-                "image": "Product image"
+                "image": "Product image",
+                "size": "Size"
             },
             "update": "Update",
             "login": {

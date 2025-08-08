@@ -12,10 +12,10 @@
 				<div class="mycard__footer">
 					<div class="mycard__total-block">
 						<div class="mycard__total-text">{{ 'templates.cart.subtotal' | t }}</div>
-						<div class="mycard__total-price">500$</div>
+						<div class="mycard__total-price">{{ cart.items_subtotal_price | money }}</div>
 					</div>
 					<div class="mycard__button-block">
-						<button data-fls-button="" class="button button--dark mycard__button-checkout">{{ 'templates.cart.checkout' | t }}</button>
+						<a href="/checkout" class="button button--dark mycard__button-checkout">{{ 'templates.cart.checkout' | t }}</a>
 					</div>
 					<div class="mycard__step-text">{{ 'templates.cart.step' | t }}</div>
 				</div>
@@ -33,7 +33,7 @@
       <div class="item-mycard__headline-and-quantity">
         <h2 class="item-mycard__headline">[[title]]</h2>
         <div class="item-mycard__size-block">
-          <div class="item-mycard__size-headline">Size:</div>
+          <div class="item-mycard__size-headline">{{'sections.cart.headings.size' | t}}:</div>
           <div class="item-mycard__size-items">
             <div class="item-mycard__size-item">[[variant_title]]</div>
           </div>
@@ -59,6 +59,3 @@
     </div>
   </div>
 </script>
-
-
-<script src="{{ 'cart-custom.js' | asset_url }}" defer="defer"></script>
