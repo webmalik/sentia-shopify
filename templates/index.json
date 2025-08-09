@@ -9,76 +9,183 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "banner_home_TcEgmg": {
+      "type": "banner-home",
+      "name": "Banner Image/Video",
+      "settings": {
+        "layout_style": "one",
+        "title_style": "hero",
+        "media_type": "video",
+        "video": "shopify://files/videos/6308760_Spa_Spa_Day_1920x1080.mp4",
+        "title": "Feel home in natural comfort",
+        "button_label": "Shop now",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "viewall_tpCgUf": {
+      "type": "viewall",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "product_block_KeXYd7": {
+          "type": "product_block",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "product": "bath-towels"
           }
         },
-        "button": {
-          "type": "buttons",
+        "product_block_TemYkQ": {
+          "type": "product_block",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "product": "bath-towels"
+          }
+        },
+        "product_block_FtJCNX": {
+          "type": "product_block",
+          "settings": {
+            "product": "bath-towels"
+          }
+        },
+        "product_block_QKy4yL": {
+          "type": "product_block",
+          "settings": {
+            "product": "bath-towels"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "product_block_KeXYd7",
+        "product_block_TemYkQ",
+        "product_block_FtJCNX",
+        "product_block_QKy4yL"
       ],
+      "name": "View all products",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "title": "Bath towels",
+        "link_label": "View all",
+        "link_url": "shopify://collections/bed-linen",
+        "collection": "bed-linen",
+        "products_limit": 4
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "banner_two_QRGciT": {
+      "type": "banner-two",
+      "name": "Content + Image banner",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "layout": "reverse",
+        "image_desktop": "shopify://shop_images/shop-now-2.png",
+        "image_alt": "",
+        "image_link": "shopify://products/stone-mist",
+        "heading": "Lightweight robes that bring warmth and comfort",
+        "button_label": "Shop NOW",
+        "button_link": "shopify://collections/robes"
+      }
+    },
+    "viewall_6KhBfx": {
+      "type": "viewall",
+      "name": "View all products",
+      "settings": {
+        "title": "Robes",
+        "link_label": "View all",
+        "link_url": "shopify://collections/robes",
+        "collection": "robes",
+        "products_limit": 4
+      }
+    },
+    "banner_home_Ah9yFd": {
+      "type": "banner-home",
+      "name": "Banner Image/Video",
+      "settings": {
+        "layout_style": "two",
+        "title_style": "other",
+        "media_type": "image",
+        "image_desktop": "shopify://shop_images/shop-now-3.png",
+        "title": "100% natural fabrics. Pure comfort",
+        "button_label": "Shop now",
+        "button_link": "shopify://collections/bed-linen"
+      }
+    },
+    "viewall_CPJxyp": {
+      "type": "viewall",
+      "name": "View all products",
+      "settings": {
+        "title": "Bed linen",
+        "link_label": "View all",
+        "link_url": "shopify://collections/bed-linen",
+        "collection": "bed-linen",
+        "products_limit": 4
+      }
+    },
+    "banner_two_d3zgVN": {
+      "type": "banner-two",
+      "name": "Content + Image banner",
+      "settings": {
+        "layout": "normal",
+        "image_desktop": "shopify://shop_images/shop-now-4.png",
+        "image_alt": "",
+        "image_link": "shopify://collections/basic-underwear",
+        "heading": "Natural essentialsfor every day",
+        "button_label": "Shop NOW",
+        "button_link": "shopify://collections/basic-underwear"
+      }
+    },
+    "viewall_GVJa9z": {
+      "type": "viewall",
+      "name": "View all products",
+      "settings": {
+        "title": "Basic Underwear",
+        "link_label": "View all",
+        "link_url": "shopify://collections/basic-underwear",
+        "collection": "basic-underwear",
+        "products_limit": 4
+      }
+    },
+    "banner_home_eccKn8": {
+      "type": "banner-home",
+      "name": "Banner Image/Video",
+      "settings": {
+        "layout_style": "two",
+        "title_style": "other",
+        "media_type": "image",
+        "image_desktop": "shopify://shop_images/shop-now-5.png",
+        "title": "Eco bags for everyday use — convenient and natural",
+        "button_label": "Shop now",
+        "button_link": "shopify://collections/eco-tote-bags"
+      }
+    },
+    "viewall_LCpxHm": {
+      "type": "viewall",
+      "name": "View all products",
+      "settings": {
+        "title": "Eco bags",
+        "link_label": "View all",
+        "link_url": "shopify://collections/eco-tote-bags",
+        "collection": "eco-tote-bags",
+        "products_limit": 4
+      }
+    },
+    "banner_two_gPKRMg": {
+      "type": "banner-two",
+      "name": "Content + Image banner",
+      "settings": {
+        "layout": "reverse",
+        "image_desktop": "shopify://shop_images/shop-now-6.png",
+        "image_alt": "",
+        "image_link": "shopify://pages/contact",
+        "heading": "Let’s connect and create something natural together!",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "banner_home_TcEgmg",
+    "viewall_tpCgUf",
+    "banner_two_QRGciT",
+    "viewall_6KhBfx",
+    "banner_home_Ah9yFd",
+    "viewall_CPJxyp",
+    "banner_two_d3zgVN",
+    "viewall_GVJa9z",
+    "banner_home_eccKn8",
+    "viewall_LCpxHm",
+    "banner_two_gPKRMg"
   ]
 }

@@ -1,0 +1,75 @@
+{%- comment -%} Universal breadcrumbs (без обгорток) {%- endcomment -%}
+
+{%- assign tmpl = template.name | downcase -%}
+
+{%- assign is_product = false -%}
+{%- assign is_collection = false -%}
+{%- assign is_article = false -%}
+{%- assign is_blog = false -%}
+
+{%- if tmpl == 'product' and product -%}{% assign is_product = true %}{%- endif -%}
+{%- if tmpl == 'collection' and collection -%}{% assign is_collection = true %}{%- endif -%}
+{%- if tmpl == 'article' and article -%}{% assign is_article = true %}{%- endif -%}
+{%- if tmpl == 'blog' and blog -%}{% assign is_blog = true %}{%- endif -%}
+
+<nav data-fls-breadcrumbs class="breadcrumbs" aria-label="breadcrumbs">
+  <div class="breadcrumbs__body">
+    <ul class="breadcrumbs__list">
+      <li class="breadcrumbs__item">
+        <a href="{{ routes.root_url }}" class="breadcrumbs__link">Home</a>
+      </li>
+
+      {%- if is_product -%}
+        {%- assign crumb_collection = nil -%}
+        {%- if collection -%}
+          {%- assign crumb_collection = collection -%}
+        {%- elsif product.collections.size > 0 -%}
+          {%- assign crumb_collection = product.collections.first -%}
+        {%- endif -%}
+        {%- if crumb_collection -%}
+          <li class="breadcrumbs__item">
+            <a href="{{ crumb_collection.url }}" class="breadcrumbs__link">{{ crumb_collection.title }}</a>
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">{{ product.title }}</li>
+
+      {%- elsif is_collection -%}
+        <li class="breadcrumbs__item">{{ collection.title }}</li>
+
+      {%- elsif is_article -%}
+        <li class="breadcrumbs__item">
+          <a href="{{ blog.url }}" class="breadcrumbs__link">{{ blog.title }}</a>
+        </li>
+        <li class="breadcrumbs__item">{{ article.title }}</li>
+
+      {%- elsif is_blog -%}
+        <li class="breadcrumbs__item">{{ blog.title }}</li>
+
+      {%- elsif tmpl == 'page' and page -%}
+        <li class="breadcrumbs__item">{{ page.title }}</li>
+
+      {%- elsif tmpl == 'cart' -%}
+        <li class="breadcrumbs__item">{{ 'sections.cart.title' | t | default: 'Cart' }}</li>
+
+      {%- elsif tmpl == 'search' -%}
+        <li class="breadcrumbs__item">
+          {{ 'general.search.search' | t | default: 'Search' }}
+          {%- if search and search.terms != blank -%}
+            : “{{ search.terms | escape }}”
+          {%- endif -%}
+        </li>
+
+      {%- elsif tmpl == 'customers' -%}
+        <li class="breadcrumbs__item">{{ 'customer.account.title' | t | default: 'Account' }}</li>
+
+      {%- elsif tmpl == '404' -%}
+        <li class="breadcrumbs__item">404</li>
+
+      {%- else -%}
+        {%- if page_title != blank -%}
+          <li class="breadcrumbs__item">{{ page_title }}</li>
+        {%- endif -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</nav>

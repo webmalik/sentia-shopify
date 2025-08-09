@@ -3743,11 +3743,11 @@ textarea {
     .form-reset__button {
         width: 11.875rem;
     }
-    .form-productpage__line:first-child:not(:last-child) {
+    .form-productpage__line {
         margin-bottom: 1.875rem;
     }
-    .form-productpage__line:nth-child(2):not(:last-child) {
-        margin-bottom: 2.5rem;
+    .form-productpage__button-items {
+        margin-top: 2.5rem;
     }
     .form-productpage__button-items {
         column-gap: 0.75rem;
@@ -4513,11 +4513,11 @@ textarea {
     .form-reset__button {
         width: clamp(11.875rem, 10.3211325966875rem + 6.6298342541vw, 15.625rem);
     }
-    .form-productpage__line:first-child:not(:last-child) {
+    .form-productpage__line {
         margin-bottom: clamp(1.875rem, 1.61602209945rem + 1.1049723757vw, 2.5rem);
     }
-    .form-productpage__line:nth-child(2):not(:last-child) {
-        margin-bottom: clamp(2.5rem, 2.1244820442rem + 1.6022099448vw, 3.40625rem);
+    .form-productpage__button-items {
+        margin-top: clamp(2.5rem, 2.1244820442rem + 1.6022099448vw, 3.40625rem);
     }
     .form-productpage__button-items {
         column-gap: clamp(0.75rem, 0.6982044198875rem + 0.2209944751vw, 0.875rem);
@@ -5563,11 +5563,11 @@ textarea {
     .form-reset__button {
         width: 15.625rem;
     }
-    .form-productpage__line:first-child:not(:last-child) {
+    .form-productpage__line {
         margin-bottom: 2.5rem;
     }
-    .form-productpage__line:nth-child(2):not(:last-child) {
-        margin-bottom: 3.40625rem;
+    .form-productpage__button-items {
+        margin-top: 3.40625rem;
     }
     .form-productpage__button-items {
         column-gap: 0.875rem;

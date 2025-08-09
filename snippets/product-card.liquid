@@ -1,0 +1,34 @@
+<div data-fls-productcard class="productcard">
+  <div class="productcard__content">
+    <a href="{{ product.url }}" class="productcard__link">
+      <div class="productcard__top">
+        <button type="button" class="productcard__save" aria-label="Add to wishlist"></button>
+        <div class="productcard__gallery-block">
+          <div class="productcard__gallery productcard__gallery--home">
+            {% if product.images.size > 0 %}
+              <img class="productcard__image-above ibg ibg--contain" 
+                   src="{{ product.images[0] | img_url: 'master' }}" 
+                   alt="{{ product.title | escape }}">
+            {% endif %}
+            {% if product.images.size > 1 %}
+              <img class="productcard__image-under ibg ibg--contain" 
+                   src="{{ product.images[1] | img_url: 'master' }}" 
+                   alt="{{ product.title | escape }}">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="productcard__bottom">
+        <h2 class="productcard__headline">{{ product.title }}</h2>
+        <div class="productcard__price">
+          {% if product.compare_at_price_max > product.price %}
+            <span class="price--sale">{{ product.price | money }}</span>
+            <span class="price--compare">{{ product.compare_at_price_max | money }}</span>
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

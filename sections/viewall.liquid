@@ -1,0 +1,100 @@
+<section class="viewall viewall--home" data-fls-viewall>
+  <div class="viewall__content">
+    <div class="viewall__container">
+      <div class="viewall__title-block">
+        {% if section.settings.title != blank %}
+          <h2 class="viewall__title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.link_label != blank and section.settings.link_url != blank %}
+          <a href="{{ section.settings.link_url }}" class="viewall__link">{{ section.settings.link_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="viewall__items">
+      {% if section.blocks.size > 0 %}
+        {%- comment -%} Виводимо товари з блоків {%- endcomment -%}
+        {% for block in section.blocks %}
+          {% if block.settings.product != blank %}
+            {% assign product = all_products[block.settings.product] %}
+            {% if product %}
+              <div class="viewall__item">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% elsif section.settings.collection != blank %}
+        {%- comment -%} Якщо блоків немає → виводимо товари з колекції {%- endcomment -%}
+        {% assign collection_handle = section.settings.collection %}
+        {% assign limit = section.settings.products_limit | default: 4 %}
+        {% if collections[collection_handle] %}
+          {% for product in collections[collection_handle].products limit: limit %}
+            <div class="viewall__item">
+              {% render 'product-card', product: product %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "View all products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Bath towels"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (fallback)"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Products limit (for collection)",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "View all products",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
