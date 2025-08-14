@@ -1,0 +1,318 @@
+<div class="breadcrumbs-mob">
+	{% render 'breadcrumbs' %}
+</div>
+{% if section.settings.show_top_banner %}
+  <div data-fls-herotwocard class="herotwocard">
+    <div class="herotwocard__content">
+      <div class="herotwocard__left">
+        {% if section.settings.banner_title != blank %}
+          <h2 class="herotwocard__title">
+            {{ section.settings.banner_title }}
+          </h2>
+        {% endif %}
+      </div>
+
+      <div class="herotwocard__right">
+        {% assign banner_href = section.settings.banner_link_url | default: '#' %}
+        {% assign banner_target = section.settings.banner_link_target | default: '_self' %}
+        <a href="{{ banner_href }}" target="{{ banner_target }}" class="herotwocard__link" aria-label="Hero banner">
+          {% if section.settings.banner_type == 'image' and section.settings.banner_image != blank %}
+            <img
+              class="herotwocard__image ibg"
+              src="{{ section.settings.banner_image | img_url: 'master' }}"
+              alt="{{ section.settings.banner_title | escape }}"
+              loading="lazy">
+          {% elsif section.settings.banner_type == 'video' and section.settings.banner_video != blank %}
+            {{ section.settings.banner_video
+              | video_tag:
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false,
+                  class: 'herotwocard__video' }}
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<div data-fls-breadcrumbsfiltername="" class="breadcrumbsfiltername">
+	<div class="breadcrumbsfiltername__container">
+		<div class="breadcrumbsfiltername__content">
+			<h2 class="breadcrumbsfiltername__title">{{ collection.title }}</h2>
+			<div class="breadcrumbsfiltername__block">
+				{% render 'breadcrumbs' %}
+			</div>
+			<div class="breadcrumbsfiltername__filter-block">
+				<button type="button" data-fls-popup-link="filter" class="breadcrumbsfiltername__filter-link --icon-filter">{{'products.facets.filter_button' | t}}</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% paginate collection.products by 50 %}
+<section data-fls-productcardgrid class="productcardgrid">
+{% render 'filter' %}
+  <div id="ProductGridContainer" data-section-id="{{ section.id }}" class="productcardgrid__content">
+    <div id="product-grid" data-id="{{ section.id }}" class="catalog__grid collection productcardgrid__items productcardgrid__items--shop-all">
+      {%- for product in collection.products -%}
+		{%- assign page_idx = forloop.index -%}
+
+		{%- assign banner_block = nil -%}
+		{%- assign span = '1' -%}
+		{%- assign style_attr = '' -%}
+		{%- assign prod_link = nil -%}
+
+		{%- for block in section.blocks -%}
+			{%- if block.type == 'video_card' and block.settings.positions != blank -%}
+			{%- assign positions_clean = ',' | append: block.settings.positions | append: ',' | replace: ' ', '' | replace: ',,', ',' -%}
+			{%- assign token = ',' | append: page_idx | append: ',' -%}
+			{%- if positions_clean contains token -%}
+				{%- assign banner_block = block -%}
+				{%- assign span = block.settings.grid_span -%}
+				{%- if span == '2' -%}{% assign style_attr = 'grid-column: span 2;' %}
+				{%- elsif span == '4' -%}{% assign style_attr = 'grid-column: span 4;' %}{%- endif -%}
+				{%- assign prod_link = block.settings.product -%}
+				{%- break -%}
+			{%- endif -%}
+			{%- endif -%}
+		{%- endfor -%}
+
+		{%- if banner_block -%}
+			<div class="productcardgrid__item productcardgrid__item--video" style="{{ style_attr }}" {{ banner_block.shopify_attributes }}>
+			<div class="productcardgrid__productcard">
+				<div class="productcardgrid__productcard-content">
+				<a href="{{ prod_link.url | default: '#' }}" class="productcardgrid__productcard-link">
+					{%- if banner_block.settings.video_media != blank -%}
+					{{ banner_block.settings.video_media | video_tag: autoplay: true, loop: true, muted: true, class: 'productcardgrid__productcard-video' }}
+					{%- elsif banner_block.settings.image != blank -%}
+					<img
+						src="{{ banner_block.settings.image | img_url: 'master' }}"
+						alt="{{ banner_block.settings.title | default: prod_link.title | escape }}"
+						class="productcardgrid__productcard-image ibg"
+						loading="lazy">
+					{%- endif -%}
+					<div class="productcardgrid__headline-block productcardgrid__headline-block--shop-all">
+					<h2 class="productcardgrid__headline">{{ banner_block.settings.title | default: prod_link.title }}</h2>
+					<div class="productcardgrid__price">
+						{%- if banner_block.settings.price_override == blank-%}
+						{{ prod_link.selected_or_first_available_variant.price | money }}
+						{%- elsif banner_block.settings.price_override != blank -%}
+						{{ banner_block.settings.price_override }}
+						{%- endif -%}
+					</div>
+					</div>
+				</a>
+				</div>
+			</div>
+			</div>
+		{%- endif -%}
+
+		<div class="productcardgrid__item">
+			{% render 'product-card', product: product %}
+		</div>
+{%- endfor -%}
+
+
+    </div>
+  </div>
+</section>
+
+
+{% if paginate.pages > 1 %}
+  <nav class="pagination" role="navigation" aria-label="Pagination">
+    <ul class="pagination__list">
+      {% if paginate.previous %}
+        <li class="pagination__item">
+          <a href="{{ paginate.previous.url }}" class="pagination__link pagination__link--prev" aria-label="Previous">
+            &larr; Prev
+          </a>
+        </li>
+      {% endif %}
+
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <li class="pagination__item">
+            <a href="{{ part.url }}" class="pagination__link">{{ part.title }}</a>
+          </li>
+        {% else %}
+          <li class="pagination__item{% if part.title == paginate.current_page %} pagination__item--current{% endif %}">
+            <span class="pagination__link">{{ part.title }}</span>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.next %}
+        <li class="pagination__item">
+          <a href="{{ paginate.next.url }}" class="pagination__link pagination__link--next" aria-label="Next">
+            Next &rarr;
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+{% endpaginate %}
+
+<script>
+(() => {
+  const GRID_SELECTOR = '[data-fls-productcardgrid] .productcardgrid__items';
+  const ITEM_SEL = '.productcardgrid__item';
+  const END_CLASS = 'productcardgrid__item--row-end';
+  const TOL = 4;
+  const DEBOUNCE = 100;
+
+  const markEnds = () => {
+    document.querySelectorAll(GRID_SELECTOR).forEach(grid => {
+      const items = grid.querySelectorAll(ITEM_SEL);
+      if (!items.length) return;
+
+      items.forEach(el => el.classList.remove(END_CLASS));
+
+      const rows = [];
+      items.forEach(el => {
+        const top = el.offsetTop;
+        const last = rows[rows.length - 1];
+        if (last && Math.abs(last.top - top) <= TOL) last.items.push(el);
+        else rows.push({ top, items: [el] });
+      });
+
+      rows.forEach(r => {
+        const rightmost = r.items.reduce((a, b) =>
+          (b.offsetLeft + b.offsetWidth) > (a.offsetLeft + a.offsetWidth) ? b : a
+        , r.items[0]);
+        rightmost.classList.add(END_CLASS);
+      });
+    });
+  };
+
+  const debounce = (fn, delay) => {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), delay);
+    };
+  };
+  const runDebounced = debounce(markEnds, DEBOUNCE);
+
+  // Перший запуск
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', markEnds, { once: true });
+  } else {
+    markEnds();
+  }
+  window.addEventListener('load', runDebounced, { once: true });
+  window.addEventListener('resize', runDebounced);
+  document.addEventListener('shopify:section:load', runDebounced);
+
+  // Головний обсервер на сам контейнер з товарами
+  const productGrid = document.getElementById('ProductGridContainer');
+  if (productGrid) {
+    new MutationObserver((mutations) => {
+      let hasChanges = false;
+      for (const m of mutations) {
+        if (
+          m.type === 'childList' &&
+          (m.addedNodes.length || m.removedNodes.length)
+        ) {
+          hasChanges = true;
+          break;
+        }
+      }
+      if (hasChanges) runDebounced();
+    }).observe(productGrid, {
+      childList: true,
+      subtree: true
+    });
+  }
+})();
+</script>
+
+
+{% schema %}
+{
+  "name": "Collection product grid",
+  "settings": [
+	{
+		"type": "checkbox",
+		"id": "show_top_banner",
+		"label": "Show top banner",
+		"default": true
+		},
+		{
+		"type": "select",
+		"id": "banner_type",
+		"label": "Banner type",
+		"default": "image",
+		"options": [
+			{ "value": "image", "label": "Image" },
+			{ "value": "video", "label": "Video" }
+		]
+		},
+		{
+		"type": "text",
+		"id": "banner_title",
+		"label": "Banner title",
+		"default": "Eco bags for everyday use — convenient and natural"
+		},
+		{
+		"type": "image_picker",
+		"id": "banner_image",
+		"label": "Banner image"
+		},
+		{
+		"type": "video",
+		"id": "banner_video",
+		"label": "Banner video"
+		},
+		{
+		"type": "url",
+		"id": "banner_link_url",
+		"label": "Link URL"
+		},
+		{
+		"type": "select",
+		"id": "banner_link_target",
+		"label": "Link target",
+		"default": "_self",
+		"options": [
+			{ "value": "_self", "label": "Same tab" },
+			{ "value": "_blank", "label": "New tab" }
+		]
+		}
+  ],
+  "blocks": [
+	{
+		"type": "video_card",
+		"name": "Banner card in grid",
+		"settings": [
+		{ "type": "product", "id": "product", "label": "Product to link" },
+		{ "type": "text", "id": "title", "label": "Title override (optional)" },
+		{ "type": "text", "id": "price_override", "label": "Price override (optional)" },
+		{ "type": "video", "id": "video_media", "label": "Banner video (optional)" },
+		{ "type": "image_picker", "id": "image", "label": "Image fallback (optional)" },
+		{
+			"type": "select",
+			"id": "grid_span",
+			"label": "Grid width",
+			"default": "2",
+			"options": [
+			{ "value": "1", "label": "Normal (1 column span)" },
+			{ "value": "2", "label": "Span 2 columns" },
+			{ "value": "4", "label": "Span 4 columns (full width)" }
+			]
+		},
+		{
+			"type": "text",
+			"id": "positions",
+			"label": "Positions (comma separated)",
+			"info": "e.g. 1,3,7 — indices where to show the banner block"
+		}
+		]
+	}
+	],
+  "presets": [
+    { "name": "Collection grid with inline videos" }
+  ]
+}
+{% endschema %}

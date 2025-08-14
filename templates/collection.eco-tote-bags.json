@@ -52,11 +52,12 @@
         "video_card_rbkMei"
       ],
       "settings": {
-        "show_top_banner": false,
+        "show_top_banner": true,
         "banner_type": "image",
         "banner_title": "Eco bags for everyday use — convenient and natural",
-        "banner_link_url": "",
-        "banner_link_text": "Shop now",
+        "banner_image": "shopify://shop_images/image-1_adb2e172-e859-4e4d-8ee4-9d92f20941c9.png",
+        "banner_link_url": "shopify://collections/eco-tote-bags",
+        "banner_link_text": "",
         "banner_link_target": "_self"
       }
     }

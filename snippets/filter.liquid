@@ -1,0 +1,157 @@
+<div data-fls-filterandsort class="filterandsort">
+  <div class="filterandsort__wrapper">
+    <div class="filterandsort__body">
+      <div class="filterandsort__content">
+        <div class="filterandsort__filtersort filtersort">
+          <div class="filtersort__header">
+            <h2 class="filtersort__title">{{ 'products.facets.filter_and_sort' | t | default: 'Filter & sort' }}</h2>
+            <button type="button" class="filtersort__close" aria-label="Close"></button>
+          </div>
+
+          <!-- ВАЖЛИВО: обгортаємо у компонент Dawn -->
+          <facet-filters-form>
+            <form id="FacetFiltersForm" class="filtersort__form form-filtersort" is="facet-filters-form">
+              <div class="form-filtersort__rows">
+                <div data-fls-spollers data-fls-spollers-one class="form-filtersort__spollers spollers-filtersort">
+
+                  <!-- Sort by -->
+                  <details class="spollers-filtersort__item" data-fls-spollers-open>
+					<summary class="spollers-filtersort__title --icon-arrow">{{ 'products.facets.sort_by_label' | t | default: 'Sort by' }}</summary>
+					<div class="spollers-filtersort__body">
+						<ul class="spollers-filtersort__radio-list">
+						{% for option in collection.sort_options %}
+							{% assign sid = 'sort-' | append: option.value | handle %}
+							<li class="spollers-filtersort__radio-item">
+								<input
+								type="radio"
+								id="{{ sid }}"
+								name="sort_by"
+								value="{{ option.value }}"
+								{% if option.value == collection.sort_by %}checked{% endif %}
+								>
+								<label for="{{ sid }}" class="radio">
+									<span>{{ option.name }}</span>
+								</label>
+							</li>
+						{% endfor %}
+						</ul>
+					</div>
+					</details>
+
+
+                  <!-- Дефолтні Shopify фільтри -->
+                  {% for filter in collection.filters %}
+                    <details
+                      class="spollers-filtersort__item js-filter"
+                      id="Details-{{ filter.param_name }}-{{ section.id }}"
+                    >
+                      <summary class="spollers-filtersort__title --icon-arrow">{{ filter.label }}</summary>
+
+                      <div class="spollers-filtersort__body">
+                        {% if filter.type == 'list' %}
+                          <div class="spollers-filtersort__checkbox-items">
+                            {% assign sorted_values = filter.values %}
+                            {% if filter.operator == 'AND' %}
+                              {% assign active_values = filter.values | where: 'active', true %}
+                              {% assign inactive_values = filter.values | where: 'active', false %}
+                              {% assign sorted_values = active_values | concat: inactive_values %}
+                            {% endif %}
+
+                            {% for value in sorted_values %}
+								{% assign input_id = 'filter-' | append: filter.param_name | append: '-' | append: value.value | handle %}
+								{% assign is_disabled = false %}
+								{% unless value.count > 0 or value.active %}
+									{% assign is_disabled = true %}
+								{% endunless %}
+
+                              <div class="spollers-filtersort__checkbox-item">
+                                <label class="spollers-filtersort__checkbox checkbox" for="{{ input_id }}">
+                                  <input
+                                    class="spollers-filtersort__checkbox-input checkbox__input"
+                                    type="checkbox"
+                                    id="{{ input_id }}"
+                                    name="{{ value.param_name }}"
+                                    value="{{ value.value }}"
+                                    {% if value.active %}checked{% endif %}
+                                    {% if is_disabled %}disabled{% endif %}
+                                  >
+                                  <span class="spollers-filtersort__text checkbox__text">{{ value.label }}{% if value.count %} ({{ value.count }}){% endif %}</span>
+                                </label>
+                              </div>
+                            {% endfor %}
+                          </div>
+
+                        {% elsif filter.type == 'price_range' %}
+							<div class="spollers-filtersort__from-and-to">
+								<div class="spollers-filtersort__from-block">
+								<span class="field-currency">{{ 'products.facets.from' | t | default: 'From' }}</span>
+								<div class="field">
+									<input
+									class="spollers-filtersort__input-from input"
+									name="{{ filter.min_value.param_name }}"
+									id="Filter-{{ section.id }}-{{ filter.label | handle }}-from"
+									{% if filter.min_value.value %}
+										value="{{ filter.min_value.value | money_without_currency }}"
+									{% endif %}
+									type="text"
+									inputmode="decimal"
+									placeholder="{{ cart.currency.symbol }} 0"
+									data-pattern="\d| |,|\."
+									data-min="0"
+									data-max="{{ filter.range_max | money_without_currency }}"
+									>
+								</div>
+								</div>
+
+								<div class="spollers-filtersort__to-block">
+								<span class="field-currency">{{ 'products.facets.to' | t | default: 'To' }}</span>
+								<div class="field">
+									<input
+									class="spollers-filtersort__input-to input"
+									name="{{ filter.max_value.param_name }}"
+									id="Filter-{{ section.id }}-{{ filter.label | handle }}-to"
+									{% if filter.max_value.value %}
+										value="{{ filter.max_value.value | money_without_currency }}"
+									{% endif %}
+									type="text"
+									inputmode="decimal"
+									placeholder="{{ cart.currency.symbol }} {{ filter.range_max | money_without_currency }}"
+									data-pattern="\d| |,|\."
+									data-min="0"
+									data-max="{{ filter.range_max | money_without_currency }}"
+									>
+								</div>
+								</div>
+							</div>
+						{% endif %}
+
+                      </div>
+                    </details>
+                  {% endfor %}
+
+                </div>
+              </div>
+
+              <div class="form-filtersort__button-items">
+                <div class="form-filtersort__button-block">
+                  <button type="submit" class="form-filtersort__button button button--dark">
+                    {{ 'products.facets.apply' | t | default: 'Apply' }}
+                  </button>
+                </div>
+                <a href="{{ collection.url }}" class="form-filtersort__reset">
+                  {{ 'products.facets.clear' | t | default: 'Reset filter' }}
+                </a>
+              </div>
+
+              <noscript>
+                <button type="submit" class="button">{{ 'products.facets.apply' | t | default: 'Apply' }}</button>
+              </noscript>
+            </form>
+          </facet-filters-form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'facets.js' | asset_url }}" defer></script>

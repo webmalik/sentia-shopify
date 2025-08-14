@@ -52,11 +52,11 @@
         "video_card_rbkMei"
       ],
       "settings": {
-        "show_top_banner": false,
+        "show_top_banner": true,
         "banner_type": "image",
-        "banner_title": "Eco bags for everyday use — convenient and natural",
-        "banner_link_url": "",
-        "banner_link_text": "Shop now",
+        "banner_title": "Natural essentialsfor every day",
+        "banner_image": "shopify://shop_images/image-1_c1b501c9-7132-402a-af3b-c0df0cb502c2.png",
+        "banner_link_url": "shopify://collections/basic-underwear",
         "banner_link_target": "_self"
       }
     }

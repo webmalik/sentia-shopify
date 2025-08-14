@@ -10,17 +10,10 @@
 {
   "sections": {
     "main": {
-      "type": "main-contact",
+      "type": "main-page",
       "settings": {
-        "heading": "Get in touch",
-        "consent_required": true,
-        "consent_text": "Agree with our Cookie Policy and",
-        "privacy_label": "Privacy Policy.",
-        "privacy_url": "shopify://pages/privacy-policy",
-        "privacy_target": "_self",
-        "right_image": "shopify://shop_images/image_7bb28ce0-4dfe-42fa-a804-f66864192aa5.png",
-        "right_link": "",
-        "submit_label": "Submit"
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     }
   },

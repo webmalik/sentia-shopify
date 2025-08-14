@@ -52,11 +52,11 @@
         "video_card_rbkMei"
       ],
       "settings": {
-        "show_top_banner": false,
+        "show_top_banner": true,
         "banner_type": "image",
-        "banner_title": "Eco bags for everyday use — convenient and natural",
-        "banner_link_url": "",
-        "banner_link_text": "Shop now",
+        "banner_title": "Soft bedding that feels light and soothing",
+        "banner_image": "shopify://shop_images/image-1_a23852d8-1877-4754-a3f1-8e0d4569008f.png",
+        "banner_link_url": "shopify://collections/bed-linen",
         "banner_link_target": "_self"
       }
     }

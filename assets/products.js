@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionInputs = form.querySelectorAll('.form-productpage__options-input');
     const mainImg = document.querySelector('[data-product-image]');
 
-    const qtyInput = form.querySelector('[data-fls-quantity-value]');
-    const minusBtn = form.querySelector('[data-fls-quantity-minus]');
-    const plusBtn = form.querySelector('[data-fls-quantity-plus]');
+    const qtyInput = form.querySelector('[data-quantity-value]');
+    const minusBtn = form.querySelector('[data-quantity-minus]');
+    const plusBtn = form.querySelector('[data-quantity-plus]');
 
     const formatMoney = (cents) => {
         if (window.Shopify && typeof Shopify.formatMoney === 'function') {
@@ -156,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // важливо: перехоплюємо submit, щоб НЕ було редіректа
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const variantId = idInput?.value;
