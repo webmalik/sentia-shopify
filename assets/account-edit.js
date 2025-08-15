@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('[data-edit-form]');
     if (!form || !window.customer) return;
 
-    const SERVER_URL = 'https://wishlistapp-frooteli.onrender.com';
-    const SHOP = 'frooteli-dev.myshopify.com';
+    const SERVER_URL = 'https://wishlist-sentia.onrender.com';
+    const SHOP = 'sentia-dev.myshopify.com';
     const CUSTOMER_ID = window.customer;
 
     const countrySelect = form.querySelector('select[name="country"]');

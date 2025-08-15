@@ -1,0 +1,63 @@
+<section data-fls-shopnowimage class="shopnowimage">
+  {% if section.settings.video_bg %}
+    {{ section.settings.video_bg | video_tag:
+      autoplay: true,
+      loop: true,
+      muted: true,
+      playsinline: true,
+      controls: false,
+      preload: 'metadata',
+      class: 'shopnowimage__bg ibg shopnowimage__bg--video' }}
+  {% endif %}
+
+  <div class="shopnowimage__container">
+    <div class="shopnowimage__content">
+      {% if section.settings.title != blank %}
+        <h2 class="shopnowimage__title shopnowimage__title--other">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      <div class="shopnowimage__button-block">
+        {% assign href = section.settings.button_url | default: '#' %}
+        <a
+          data-fls-button
+          href="{{ href }}"
+          class="shopnowimage__button button button--standart"
+          {% if section.settings.button_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+          {% if href == '#' %}aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.button_label | default: 'Contact us' }}
+          <span class="button__arrow"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop now (video hero)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Title", "default": "Let’s connect and create something natural together!" },
+    { "type": "video", "id": "video_bg", "label": "Background video" },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Contact us" },
+    { "type": "url", "id": "button_url", "label": "Button URL" },
+    {
+      "type": "select",
+      "id": "button_target",
+      "label": "Button target",
+      "default": "_self",
+      "options": [
+        { "value": "_self", "label": "Same tab" },
+        { "value": "_blank", "label": "New tab" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Shop now (video hero)" }
+  ]
+}
+{% endschema %}

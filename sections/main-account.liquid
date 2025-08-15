@@ -1,183 +1,470 @@
-{{ 'customer.css' | asset_url | stylesheet_tag }}
+<section class="account">
+  <div class="account__wrapper">
+    <div class="account__content">
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+	<!-- Ліве меню -->
+	<nav data-fls-accountmenu class="accountmenu" role="tablist" aria-label="{{ 'customer.account_nav.title' | t }}">
+		<div class="accountmenu__content">
+			<div class="accountmenu__header">
+			<h2 class="accountmenu__title">
+				{{ 'customer.account_nav.greeting_html' | t: name: customer.first_name }}
+			</h2>
+			</div>
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+			<div class="accountmenu__block">
+			<ul class="accountmenu__list">
+				<li class="accountmenu__item">
+				<a href="#profile"
+					class="accountmenu__link --icon-user"
+					role="tab"
+					aria-controls="panel-profile">
+					{{ 'customer.account_nav.my_profile' | t }}
+				</a>
+				</li>
+				<li class="accountmenu__item">
+				<a href="#orders"
+					class="accountmenu__link --icon-bag"
+					role="tab"
+					aria-controls="panel-orders">
+					{{ 'customer.account_nav.my_orders' | t }}
+				</a>
+				</li>
+				<li class="accountmenu__item">
+				<a href="#saved"
+					class="accountmenu__link --icon-heart"
+					role="tab"
+					aria-controls="panel-saved">
+					{{ 'customer.account_nav.my_wishlist' | t }}
+				</a>
+				</li>
+			</ul>
+			</div>
 
-<div class="customer account section-{{ section.id }}-padding">
-  <div>
-    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
-    <a href="{{ routes.account_logout_url }}">
-      <span class="svg-wrapper">
-        {{- 'icon-account.svg' | inline_asset_content -}}
-      </span>
-      {{ 'customer.log_out' | t }}
-    </a>
-  </div>
+			<div class="accountmenu__footer">
+			<a href="{{ routes.account_logout_url }}" class="accountmenu__help">
+				{{ 'customer.account_nav.sign_out' | t }}
+			</a>
+			</div>
+		</div>
+	</nav>
+      <!-- Панелі праворуч -->
 
-  <div>
-    <div>
-      <h2>{{ 'customer.orders.title' | t }}</h2>
+      <!-- Profile Details -->
+	<div id="panel-profile" data-account-panel="profile" class="profiledetails" role="tabpanel" aria-labelledby="tab-profile">
+		<div class="profiledetails__content">
+			<div class="profiledetails__header">
+				<h2 class="profiledetails__title">{{ 'customer.account.details' | t }}</h2>
+			</div>
 
-      {% paginate customer.orders by 20 %}
-        {%- if customer.orders.size > 0 -%}
-          <table role="table" class="order-history">
-            <caption class="visually-hidden">
-              {{ 'customer.orders.title' | t }}
-            </caption>
-            <thead role="rowgroup">
-              <tr role="row">
-                <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
-                <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
-                <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
-                <th id="ColumnFulfillment" scope="col" role="columnheader">
-                  {{ 'customer.orders.fulfillment_status' | t }}
-                </th>
-                <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
-              </tr>
-            </thead>
-            <tbody role="rowgroup">
-              {%- for order in customer.orders -%}
-                <tr role="row">
-                  <td
-                    id="RowOrder"
-                    role="cell"
-                    headers="ColumnOrder"
-                    data-label="{{ 'customer.orders.order_number' | t }}"
-                  >
-                    <a
-                      href="{{ order.customer_url }}"
-                      aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
-                    >
-                      {{ order.name }}
-                    </a>
-                  </td>
-                  <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
-                    {{ order.created_at | time_tag: format: 'date' }}
-                  </td>
-                  <td
-                    headers="RowOrder ColumnPayment"
-                    role="cell"
-                    data-label="{{ 'customer.orders.payment_status' | t }}"
-                  >
-                    {{ order.financial_status_label }}
-                  </td>
-                  <td
-                    headers="RowOrder ColumnFulfillment"
-                    role="cell"
-                    data-label="{{ 'customer.orders.fulfillment_status' | t }}"
-                  >
-                    {{ order.fulfillment_status_label }}
-                  </td>
-                  <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
-                    {{ order.total_net_amount | money_with_currency }}
-                  </td>
-                </tr>
-              {%- endfor -%}
-            </tbody>
-          </table>
-        {%- else -%}
-          <p>{{ 'customer.orders.none' | t }}</p>
-        {%- endif -%}
+			<div class="profiledetails__block">
+				<ul class="profiledetails__list">
+					<li class="profiledetails__item">
+						<div class="profiledetails__greasy">{{ 'customer.addresses.first_name' | t }}:</div>
+						<div class="profiledetails__detail">{{ customer.first_name }}</div>
+					</li>
+					<li class="profiledetails__item">
+						<div class="profiledetails__greasy">{{ 'customer.addresses.last_name' | t }}:</div>
+						<div class="profiledetails__detail">{{ customer.last_name }}</div>
+					</li>
+					<li class="profiledetails__item">
+						<div class="profiledetails__greasy">{{ 'customer.login_page.email' | t }}:</div>
+						<div class="profiledetails__detail">{{ customer.email }}</div>
+					</li>
+					<li class="profiledetails__item">
+						<div class="profiledetails__greasy">{{ 'customer.addresses.phone' | t }}:</div>
+						<div class="profiledetails__detail">{{ customer.phone }}</div>
+					</li>
+					<li class="profiledetails__item">
+						<div class="profiledetails__greasy">{{ 'customer.addresses.address1' | t }}:</div>
+						<div class="profiledetails__detail">
+							{% if customer.default_address %}
+								{{ customer.default_address.address1 }}
+								{% if customer.default_address.address2 %}, {{ customer.default_address.address2 }}{% endif %}
+								{% if customer.default_address.city %}, {{ customer.default_address.city }}{% endif %}
+								{% if customer.default_address.province %}, {{ customer.default_address.province }}{% endif %}
+								{% if customer.default_address.zip %}, {{ customer.default_address.zip }}{% endif %}
+								{% if customer.default_address.country %}, {{ customer.default_address.country }}{% endif %}
+							{% endif %}
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="profiledetails__footer">
+			<a href="#edit" class="profiledetails__edit" data-account-target="edit">
+				{{ 'customer.addresses.edit' | t }}
+			</a>
+			<a href="#reset" class="profiledetails__change" data-account-target="reset">
+				{{ 'customer.reset_password.title' | t }}
+			</a>
+			</div>
+		</div>
+	</div>
 
-        {%- if paginate.pages > 1 -%}
-          {%- if paginate.parts.size > 0 -%}
-            <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
-              <ul role="list">
-                {%- if paginate.previous -%}
-                  <li>
-                    <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
-                      <span class="svg-wrapper">
-                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                      </span>
-                    </a>
-                  </li>
-                {%- endif -%}
 
-                {%- for part in paginate.parts -%}
-                  <li>
-                    {%- if part.is_link -%}
-                      <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
-                        {{- part.title -}}
-                      </a>
-                    {%- else -%}
-                      {%- if part.title == paginate.current_page -%}
-                        <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
-                          {{- part.title -}}
-                        </span>
-                      {%- else -%}
-                        <span>{{ part.title }}</span>
-                      {%- endif -%}
-                    {%- endif -%}
-                  </li>
-                {%- endfor -%}
+      <!-- Edit Profile -->
+	<div id="panel-edit" data-account-panel="edit" class="editprofiledetails" role="tabpanel" aria-labelledby="tab-edit" hidden>
+		<div class="editprofiledetails__content">
+			<div class="editprofiledetails__header">
+			<h2 class="editprofiledetails__title">{{ 'customer.addresses.edit_address' | t }}</h2>
+			<a href="#profile" class="editprofiledetails__back" data-account-target="profile">
+				{{ 'customer.login_page.cancel' | t }} <span class="editprofiledetails__arrow"></span>
+			</a>
+			</div>
 
-                {%- if paginate.next -%}
-                  <li>
-                    <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
-                      <span class="svg-wrapper">
-                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                      </span>
-                    </a>
-                  </li>
-                {%- endif -%}
-              </ul>
-            </nav>
-          {%- endif -%}
-        {%- endif -%}
-      {% endpaginate %}
+			<form class="editprofiledetails__form form-editprofiledetails" data-edit-form="edit" >
+			<input type="hidden" name="address_id" value="{{ customer.default_address.id }}"/>
+
+			<div class="form-editprofiledetails__line-block">
+				<!-- Name -->
+				<div class="form-editprofiledetails__first-and-last-name">
+				<div class="form-editprofiledetails__name">{{ 'customer.account.details' | t }}</div>
+				<div class="form-editprofiledetails__line-items">
+					<div class="form-editprofiledetails__line-item">
+					<label class="form-editprofiledetails__label-mob" for="first_name-02">{{ 'customer.addresses.first_name' | t }}</label>
+					<input
+						id="first_name-02"
+						class="form-editprofiledetails__input input"
+						name="first_name"
+						type="text"
+						data-fls-input
+						placeholder="{{ 'customer.addresses.first_name' | t }}"
+						value="{{ customer.first_name | escape }}">
+					</div>
+					<div class="form-editprofiledetails__line-item">
+					<label class="form-editprofiledetails__label-mob" for="last_name-02">{{ 'customer.addresses.last_name' | t }}</label>
+					<input
+						id="last_name-02"
+						class="form-editprofiledetails__input input"
+						name="last_name"
+						type="text"
+						data-fls-input
+						placeholder="{{ 'customer.addresses.last_name' | t }}"
+						value="{{ customer.last_name | escape }}">
+					</div>
+				</div>
+				</div>
+
+				<!-- Email / Phone -->
+				<div class="form-editprofiledetails__email-and-phone">
+				<div class="form-editprofiledetails__line-email">
+					<label for="email-04" class="form-editprofiledetails__label">{{ 'customer.login_page.email' | t }}</label>
+					<input
+					id="email-04"
+					class="form-editprofiledetails__input input"
+					name="email"
+					type="email"
+					data-fls-input
+					autocomplete="email"
+					placeholder="{{ 'customer.login_page.email' | t }}"
+					value="{{ customer.email | escape }}">
+				</div>
+				<div class="form-editprofiledetails__line-phone">
+					<label for="phone-01" class="form-editprofiledetails__label">{{ 'customer.addresses.phone' | t }}</label>
+					<input
+					id="phone-01"
+					class="form-editprofiledetails__input input"
+					name="phone"
+					type="tel"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.phone' | t }}"
+					value="{{ customer.phone | escape }}">
+				</div>
+				</div>
+
+				<!-- Company -->
+				<div class="form-editprofiledetails__line-company">
+				<label for="company-01" class="form-editprofiledetails__label">{{ 'customer.addresses.company' | t }}</label>
+				<input
+					id="company-01"
+					class="form-editprofiledetails__input input"
+					name="company"
+					type="text"
+					autocomplete="organization"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.company' | t }}"
+					value="{{ customer.default_address.company | escape }}">
+				</div>
+
+				<!-- Address 1 -->
+				<div class="form-editprofiledetails__line-address">
+				<label for="address1-01" class="form-editprofiledetails__label">{{ 'customer.addresses.address1' | t }}</label>
+				<input
+					id="address1-01"
+					class="form-editprofiledetails__input input"
+					name="address1"
+					type="text"
+					autocomplete="address-line1"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.address1' | t }}"
+					value="{{ customer.default_address.address1 | escape }}">
+				</div>
+
+				<!-- Address 2 -->
+				<div class="form-editprofiledetails__line-apartment">
+				<label for="address2-01" class="form-editprofiledetails__label">{{ 'customer.addresses.address2' | t }}</label>
+				<input
+					id="address2-01"
+					class="form-editprofiledetails__input input"
+					name="address2"
+					type="text"
+					autocomplete="address-line2"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.address2' | t }}"
+					value="{{ customer.default_address.address2 | escape }}">
+				</div>
+
+				<!-- City / Country -->
+				<div class="form-editprofiledetails__city-and-country">
+				<div class="form-editprofiledetails__line-city">
+					<label for="city-01" class="form-editprofiledetails__label">{{ 'customer.addresses.city' | t }}</label>
+					<input
+					id="city-01"
+					class="form-editprofiledetails__input input"
+					name="city"
+					type="text"
+					autocomplete="address-level2"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.city' | t }}"
+					value="{{ customer.default_address.city | escape }}">
+				</div>
+				<div class="form-editprofiledetails__country-block">
+					<label for="country-01" class="form-editprofiledetails__label">{{ 'customer.addresses.country' | t }}</label>
+					<select
+					id="country-01"
+					class="form-editprofiledetails__country"
+					name="country"
+					data-fls-select
+					data-fls-select-modif="form-country"
+					data-default="{{ customer.default_address.country | escape }}"
+					autocomplete="country">
+					{{ all_country_option_tags }}
+					</select>
+				</div>
+				</div>
+
+				<!-- Province / Zip -->
+				<div class="form-editprofiledetails__province-and-postal">
+				<div class="form-editprofiledetails__line-province">
+					<label for="province-01" class="form-editprofiledetails__label">{{ 'customer.addresses.province' | t }}</label>
+					<input
+					id="province-01"
+					class="form-editprofiledetails__input input"
+					name="province"
+					type="text"
+					autocomplete="address-level1"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.province' | t }}"
+					value="{{ customer.default_address.province | escape }}">
+				</div>
+				<div class="form-editprofiledetails__line-postal">
+					<label for="zip-01" class="form-editprofiledetails__label">{{ 'customer.addresses.zip' | t }}</label>
+					<input
+					id="zip-01"
+					class="form-editprofiledetails__input input"
+					name="zip"
+					type="text"
+					autocomplete="postal-code"
+					data-fls-input
+					placeholder="{{ 'customer.addresses.zip' | t }}"
+					value="{{ customer.default_address.zip | escape }}">
+				</div>
+				</div>
+
+				<!-- Default address -->
+				<div class="form-editprofiledetails__checkbox-block">
+				<label data-fls-checkbox class="form-editprofiledetails__checkbox checkbox">
+					<input
+					class="form-editprofiledetails__checkbox-input checkbox__input"
+					type="checkbox"
+					name="default"
+					value="1"
+					{% if customer.default_address %}checked{% endif %}>
+					<span class="form-editprofiledetails__checkbox-text checkbox__text">{{ 'customer.addresses.set_default' | t }}</span>
+				</label>
+				</div>
+
+				<!-- Submit -->
+				<div class="form-editprofiledetails__button-block">
+				<button type="submit" data-edit-submit data-fls-button class="form-editprofiledetails__button button button--dark">
+					{{ 'customer.addresses.update' | t }}
+				</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+
+
+      <!-- Reset Password -->
+		<div id="panel-reset" data-account-panel="reset" class="reset" role="tabpanel" aria-labelledby="tab-reset" hidden>
+		<div class="reset__content">
+			<div class="reset__header">
+			<div class="reset__title-block">
+				<h2 class="reset__title">{{ 'customer.recover_password.title' | t }}</h2>
+				<a href="#profile" class="reset__back" data-account-target="profile">
+				{{ 'customer.login_page.cancel' | t }} <span class="reset__arrow"></span>
+				</a>
+			</div>
+			<div class="reset__parahraph">
+				<p class="reset__text">{{ 'customer.recover_password.subtext' | t }}</p>
+			</div>
+			</div>
+
+			{% form 'recover_customer_password', id: 'RecoverCustomerPasswordForm', class: 'reset__form form-reset', novalidate: 'novalidate' %}
+			{% if form.posted_successfully? %}
+				<div class="form-status form__message" role="status" tabindex="-1" autofocus>
+				{{ 'customer.recover_password.success' | t }}
+				</div>
+			{% endif %}
+
+			{% if form.errors %}
+				<div class="form__message">
+				<div class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+					{{ form.errors | default_errors }}
+				</div>
+				</div>
+			{% endif %}
+
+			<div class="form-reset__line">
+				<label for="RecoverEmail-{{ section.id }}" class="form-reset__label">
+				{{ 'customer.login_page.email' | t }}
+				</label>
+				<input
+				id="RecoverEmail-{{ section.id }}"
+				data-fls-input
+				type="email"
+				name="email"
+				autocomplete="email"
+				autocapitalize="off"
+				spellcheck="false"
+				placeholder="{{ 'customer.login_page.email' | t }}"
+				class="form-reset__input input">
+			</div>
+
+			<div class="form-reset__button-block">
+				<button type="submit" data-fls-button class="form-reset__button button button--dark">
+				{{ 'customer.login_page.submit' | t }}
+				</button>
+			</div>
+			{% endform %}
+		</div>
+		</div>
+
+
+      <!-- Orders -->
+      <div id="panel-orders" data-account-panel="orders" class="myorders" role="tabpanel" aria-labelledby="panel-orders" hidden>
+        <div class="myorders__content">
+			<div class="myorders__header">
+				<h2 class="myorders__title">{{ 'customer.orders.title' | t }}</h2>
+			</div>
+
+			{% if customer.orders_count == 0 %}
+				<div class="myorders__empty">{{ 'customer.orders.none' | t }}</div>
+			{% else %}
+			{% paginate customer.orders by 10 %}
+				<div class="myorders__rows">
+				{% for order in customer.orders %}
+					<div class="myorders__row row-myorders">
+					<div class="row-myorders__header">
+						<div class="row-myorders__date-and-number">
+						<div class="row-myorders__date">{{ order.created_at | date: "%B %d, %Y" }}</div>
+						<div class="row-myorders__number">{{ 'customer.order.title' | t: name: order.name }}</div>
+						</div>
+						<div class="row-myorders__total">
+						{{ 'customer.orders.total' | t }}:
+						<span>{{ order.total_price | money }}</span>
+						</div>
+					</div>
+
+					<div class="row-myorders__items">
+						{% for item in order.line_items %}
+						<div class="row-myorders__item item-myorders">
+							<div class="item-myorders__image-block">
+								<a href="{{ item.product.url }}" class="item-myorders__link">
+									{% if item.image %}
+									<img class="item-myorders__image ibg ibg--contain"
+										src="{{ item.image | img_url: '480x' }}"
+										alt="{{ item.product.title | escape }}">
+									{% endif %}
+								</a>
+							</div>
+
+							<div class="item-myorders__block">
+							<div class="item-myorders__left">
+								<div class="item-myorders__top">
+									<h2 class="item-myorders__headline">
+										<a href="{{ item.product.url }}">{{ item.product.title }}</a>
+									</h2>
+									{% if item.options_with_values and item.options_with_values.size > 0 %}
+										<div class="item-myorders__variations">
+											{% for ov in item.options_with_values %}
+												<div class="item-myorders__variation">
+													<span class="item-myorders__greasy">{{ ov.name }}:</span>
+													<span class="item-myorders__size-item">{{ ov.value }}</span>
+												</div>
+											{% endfor %}
+										</div>
+									{% endif %}
+								</div>
+
+								<div class="item-myorders__quantity-number">{{ item.quantity }}</div>
+							</div>
+
+							<div class="item-myorders__right">
+								<div class="item-myorders__price">{{ item.final_line_price | money }}</div>
+							</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					</div>
+				{% endfor %}
+				</div>
+
+				{% if paginate.pages > 1 %}
+				<nav class="myorders__pagination pagination" role="navigation" aria-label="pagination">
+					<ul class="pagination__list">
+					{% if paginate.previous %}
+						<li class="pagination__item">
+						<a class="pagination__link" href="{{ paginate.previous.url }}">&larr;</a>
+						</li>
+					{% endif %}
+					{% for part in paginate.parts %}
+						<li class="pagination__item">
+						{% if part.is_link %}
+							<a class="pagination__link" href="{{ part.url }}">{{ part.title }}</a>
+						{% else %}
+							<span class="pagination__link pagination__link--current">{{ part.title }}</span>
+						{% endif %}
+						</li>
+					{% endfor %}
+					{% if paginate.next %}
+						<li class="pagination__item">
+						<a class="pagination__link" href="{{ paginate.next.url }}">&rarr;</a>
+						</li>
+					{% endif %}
+					</ul>
+				</nav>
+				{% endif %}
+			{% endpaginate %}
+			{% endif %}
+		</div>
+      </div>
+
+      <!-- Saved -->
+      <div id="panel-saved" data-account-panel="saved" class="mysaveditems" role="tabpanel" aria-labelledby="panel-saved" hidden>
+        	<div class="mysaveditems__content">
+				<div class="mysaveditems__header">
+					<h2 class="mysaveditems__title">My Saved items</h2>
+				</div>
+				<div class="mysaveditems__items item-mysaveditems">
+					
+				</div>
+			</div>
+      </div>
     </div>
-
-    <div>
-      <h2>{{ 'customer.account.details' | t }}</h2>
-
-      {{ customer.default_address | format_address }}
-
-      <a href="{{ routes.account_addresses_url }}">
-        {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
-      </a>
-    </div>
   </div>
-</div>
+</section>
 
-{% schema %}
-{
-  "name": "t:sections.main-account.name",
-  "settings": [
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
-    }
-  ]
-}
-{% endschema %}
+<script src="{{'account.js' | asset_url }}" defer="defer"></script>
+<script src="{{'account-edit.js' | asset_url }}" defer="defer"></script>

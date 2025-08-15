@@ -1,0 +1,42 @@
+<section class="account">
+  <div class="account__wrapper">
+    <div class="account__content">
+
+	<!-- Ліве меню -->
+	<nav data-fls-accountmenu class="accountmenu" role="tablist" aria-label="{{ 'customer.account_nav.title' | t }}">
+		<div class="accountmenu__content">
+			<div class="accountmenu__header">
+				<h2 class="accountmenu__title">
+					{{ page_title | escape }}
+				</h2>
+			</div>
+			<div class="accountmenu__block">
+				<ul class="accountmenu__list">
+					<li class="accountmenu__item">
+						<span class="accountmenu__link --icon-heart accountmenu__link--active">
+							{{ 'customer.account_nav.my_wishlist' | t }}
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="accountmenu__footer">
+				<a href="{{ routes.account_logout_url }}" class="accountmenu__help">
+					{{ 'customer.log_in' | t }}
+				</a>
+			</div>
+		</div>
+	</nav>
+      <!-- Панелі праворуч -->
+		<div id="panel-saved"class="mysaveditems" >
+			<div class="mysaveditems__content">
+				<div class="mysaveditems__header">
+					<h2 class="mysaveditems__title">My Saved items</h2>
+				</div>
+				<div class="mysaveditems__items item-mysaveditems">
+					
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+</section>

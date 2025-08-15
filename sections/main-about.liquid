@@ -1,0 +1,30 @@
+<section data-fls-hero class="hero">
+  {% assign hero_title = section.settings.title  %}
+  {% if section.settings.bg_image %}
+    <img
+      class="hero__bg ibg"
+      src="{{ section.settings.bg_image | img_url: 'master' }}"
+      alt="{{ section.settings.bg_image.alt | default: hero_title | escape }}"
+      loading="lazy">
+  {% endif %}
+  <div class="hero__container">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ hero_title }}</h1>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "inline_richtext", "id": "title", "label": "Title", "default": "About us" }
+  ],
+  "presets": [
+    { "name": "About hero" }
+  ]
+}
+{% endschema %}

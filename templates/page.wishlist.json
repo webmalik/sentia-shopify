@@ -8,16 +8,11 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "main-register",
-      "settings": {
-        "image": "shopify://shop_images/image_cf9b839e-10b4-4bfd-ac3a-169831456783.png",
-        "image_link": ""
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+    "sections": {
+        "main": {
+            "type": "main-wishlist",
+            "settings": {}
+        }
+    },
+    "order": ["main"]
 }

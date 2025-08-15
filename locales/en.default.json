@@ -404,6 +404,14 @@
             "view_addresses": "View addresses",
             "return": "Return to Account details"
         },
+        "account_nav": {
+            "title": "Account navigation",
+            "greeting_html": "Hi, {{ name }}!",
+            "my_profile": "Profile details",
+            "my_orders": "My orders",
+            "my_wishlist": "My saved items",
+            "sign_out": "Sign out"
+        },
         "account_fallback": "Account",
         "activate_account": {
             "title": "Activate account",
@@ -432,7 +440,7 @@
             "add": "Add address",
             "update": "Update address",
             "cancel": "Cancel",
-            "edit": "Edit",
+            "edit": "Edit profile details",
             "delete": "Delete",
             "delete_confirm": "Are you sure you wish to delete this address?"
         },
@@ -448,6 +456,8 @@
             "password": "Password",
             "title": "Login",
             "sign_in": "Sign in",
+            "remember_me": "Remember me",
+            "dont_account": "Don't have an account?",
             "submit": "Submit",
             "alternate_provider_separator": "or"
         },
@@ -484,7 +494,7 @@
             "date": "Date",
             "payment_status": "Payment status",
             "fulfillment_status": "Fulfillment status",
-            "total": "Total",
+            "total": "Total price",
             "none": "You haven't placed any orders yet."
         },
         "recover_password": {

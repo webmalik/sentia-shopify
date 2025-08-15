@@ -10,14 +10,159 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "main-about",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "bg_image": "shopify://shop_images/image-1_af625f99-f8c8-423b-953f-d09388fc596a.png",
+        "title": "About us"
+      }
+    },
+    "pictureandtextblocklist_yjTww7": {
+      "type": "pictureandtextblocklist",
+      "blocks": {
+        "item_degWjh": {
+          "type": "item",
+          "settings": {
+            "layout": "no-checkered",
+            "headline": "Who We Are",
+            "main_p1": "Sentia Home is a brand that creates home textiles with a focus on quality, aesthetics, and comfort. Every product blends natural materials, thoughtful design, and genuine care for the user. Our collections are more than just objects — they reflect a philosophy of slow living, where every detail, every touch, and every moment at home matters.",
+            "main_p2": "Sentia Home aims to offer a sense of harmony, calm, and order — in your space, your thoughts, and your everyday rituals.",
+            "sub1_label": "",
+            "sub1_p1": "",
+            "sub1_p2": "",
+            "sub2_label": "",
+            "sub2_p1": "",
+            "sub2_p2": "",
+            "image": "shopify://shop_images/image-2_c23281eb-be1f-41c3-a086-88c4edcacafe.png",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_degWjh"
+      ],
+      "name": "Picture & text block list",
+      "settings": {}
+    },
+    "textiles_about_pVC7kq": {
+      "type": "textiles-about",
+      "name": "Textiles (video hero)",
+      "settings": {
+        "title": "Textiles that invite touch, feel good to wear, and call you back",
+        "video_bg": "shopify://files/videos/5719901_Coll_wavebreak_Close_1280x720.mp4"
+      }
+    },
+    "pictureandtextblocklist_LrUydE": {
+      "type": "pictureandtextblocklist",
+      "blocks": {
+        "item_bmgwbg": {
+          "type": "item",
+          "settings": {
+            "layout": "checkered",
+            "headline": "our Mission & Vision",
+            "main_p1": "",
+            "main_p2": "",
+            "sub1_label": "Our mission",
+            "sub1_p1": "We create products that shape the atmosphere of home — aesthetic, cozy, and intentional. Our mission is to help people feel at ease in their own space through quality, tactility, and visual harmony.",
+            "sub1_p2": "",
+            "sub2_label": "Our Vision",
+            "sub2_p1": "We aspire for Sentia Home to be associated with quality, trust, and a refined approach to everyday living. We see the brand as a source of inspiration for those who value calmness, beauty in the details, and thoughtful care for the space they inhabit.",
+            "sub2_p2": "Our focus is on natural fabrics, longevity, and products that bring lasting satisfaction — day after day.",
+            "image": "shopify://shop_images/image-4_5d8d1a23-9272-4cd9-afa5-d86eeb9cea83.png",
+            "link_url": ""
+          }
+        },
+        "item_Gp8JxC": {
+          "type": "item",
+          "settings": {
+            "layout": "no-checkered",
+            "headline": "Our Approach",
+            "main_p1": "We carefully choose trusted partners and natural materials, thoroughly test our products, and pay attention to every detail — from the cut to the packaging. For us, it’s essential that Sentia Home items are durable, pleasant to the touch, and visually balanced.",
+            "main_p2": "We value simplicity, functionality, and that unique sense of comfort that comes from the things you truly love.",
+            "sub1_label": "",
+            "sub1_p1": "",
+            "sub1_p2": "",
+            "sub2_label": "",
+            "sub2_p1": "",
+            "sub2_p2": "",
+            "image": "shopify://shop_images/image-5.png",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_bmgwbg",
+        "item_Gp8JxC"
+      ],
+      "name": "Picture & text block list",
+      "settings": {}
+    },
+    "digcounter_U9kdYF": {
+      "type": "digcounter",
+      "blocks": {
+        "item_AhcUJC": {
+          "type": "item",
+          "settings": {
+            "value": "800",
+            "symbol": "k",
+            "headline": "Meters of Fabric",
+            "text": "Stable high-volume production."
+          }
+        },
+        "item_JWkNXy": {
+          "type": "item",
+          "settings": {
+            "value": "10",
+            "symbol": "+",
+            "headline": "Years of Experience",
+            "text": "More than a decade in textile manufacturing."
+          }
+        },
+        "item_J7JhjC": {
+          "type": "item",
+          "settings": {
+            "value": "6",
+            "symbol": "+",
+            "headline": "Product Categories",
+            "text": "A wide range of fabrics and textile products."
+          }
+        },
+        "item_KgBiir": {
+          "type": "item",
+          "settings": {
+            "value": "100",
+            "symbol": "%",
+            "headline": "Eco Commitment",
+            "text": "We prioritize sustainable and eco-friendly production."
+          }
+        }
+      },
+      "block_order": [
+        "item_AhcUJC",
+        "item_JWkNXy",
+        "item_J7JhjC",
+        "item_KgBiir"
+      ],
+      "name": "Digital counters",
+      "settings": {}
+    },
+    "shopnowimage_ynRxwB": {
+      "type": "shopnowimage",
+      "name": "Shop now (video hero)",
+      "settings": {
+        "title": "Let’s connect and create something natural together!",
+        "video_bg": "shopify://files/videos/6308754_Spa_Spa_Day_1280x720.mp4",
+        "button_label": "Contact us",
+        "button_url": "shopify://pages/contact",
+        "button_target": "_self"
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "pictureandtextblocklist_yjTww7",
+    "textiles_about_pVC7kq",
+    "pictureandtextblocklist_LrUydE",
+    "digcounter_U9kdYF",
+    "shopnowimage_ynRxwB"
   ]
 }

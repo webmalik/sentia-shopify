@@ -1,0 +1,176 @@
+<section class="privacypolicy" data-fls-privacypolicy>
+  <div class="privacypolicy__content">
+    <!-- LEFT MENU -->
+    <div data-fls-policiesmenu class="policiesmenu">
+      <div class="policiesmenu__content">
+        <div class="policiesmenu__header">
+          <h2 class="policiesmenu__title">{{ section.settings.menu_title }}</h2>
+        </div>
+
+        <div class="policiesmenu__block">
+          <ul class="policiesmenu__list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'menu_item' -%}
+                {%- liquid
+                  assign href = block.settings.url | default: '#'
+                  assign icon_mod = block.settings.icon_modifier | default: ''
+                  assign is_active = false
+                  if block.settings.active
+                    assign is_active = true
+                  else
+                    if href == request.path or href == canonical_url
+                      assign is_active = true
+                    endif
+                  endif
+                -%}
+                <li class="policiesmenu__item" {{ block.shopify_attributes }}>
+                  <a href="{{ href }}"
+                     class="policiesmenu__link {% if is_active %}policiesmenu__link--active{% endif %} {{ icon_mod | strip }}">
+                    {{ block.settings.label }}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <div class="policiesmenu__footer">
+          {%- if section.settings.help_url != blank -%}
+            <a href="{{ section.settings.help_url }}" class="policiesmenu__help">{{ section.settings.help_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="privacypolicy__right right-privacypolicy">
+      <h2 class="right-privacypolicy__title">{{ section.settings.right_title }}</h2>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'policy_section' -%}
+          <div class="right-privacypolicy__headline-block" {{ block.shopify_attributes }}>
+            {%- if block.settings.title != blank -%}
+              <h3 class="right-privacypolicy__headline">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.intro_text != blank -%}
+              <div class="right-privacypolicy__parahraph">
+                <p class="right-privacypolicy__text">{{ block.settings.intro_text }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.list_intro != blank -%}
+              <div class="right-privacypolicy__parahraph">
+                <p class="right-privacypolicy__text">{{ block.settings.list_intro }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.list_items != blank -%}
+              {%- assign _items = block.settings.list_items | newline_to_br | split: '<br />' -%}
+              <ul class="right-privacypolicy__list">
+                {%- for it in _items -%}
+                  {%- assign _t = it | strip -%}
+                  {%- if _t != '' -%}
+                    <li class="right-privacypolicy__item">{{ _t }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            {%- if block.settings.outro_text != blank -%}
+              <div class="right-privacypolicy__parahraph">
+                <p class="right-privacypolicy__text">{{ block.settings.outro_text }}</p>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.link_url != blank and block.settings.link_label != blank -%}
+              <div class="right-privacypolicy__parahraph">
+                <p class="right-privacypolicy__text">
+                  {{ block.settings.link_prefix }}
+                  <a href="{{ block.settings.link_url }}"
+                     class="right-privacypolicy__link-contact"
+                     {% if block.settings.link_target == '_blank' %}target="_blank" rel="noopener"{% endif %}>
+                    {{ block.settings.link_label }}
+                  </a>{{ block.settings.link_suffix }}
+                </p>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Policies layout",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "menu_title", "label": "Menu title", "default": "Our Policies" },
+    { "type": "text", "id": "right_title", "label": "Right title", "default": "Privacy policy" },
+
+    { "type": "header", "content": "Footer help link" },
+    { "type": "text", "id": "help_label", "label": "Help label", "default": "Need help?" },
+    { "type": "url", "id": "help_url", "label": "Help URL" }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menu item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "text", "id": "icon_modifier", "label": "Icon modifier (e.g. --icon-system)" },
+        { "type": "checkbox", "id": "active", "label": "Force active", "default": false }
+      ]
+    },
+    {
+      "type": "policy_section",
+      "name": "Policy section",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Section title (e.g. 1. General Information)" },
+
+        { "type": "header", "content": "Paragraphs" },
+        { "type": "textarea", "id": "intro_text", "label": "Intro paragraph" },
+        { "type": "textarea", "id": "outro_text", "label": "Outro paragraph" },
+
+        { "type": "header", "content": "List" },
+        { "type": "text", "id": "list_intro", "label": "List intro (optional)" },
+        { "type": "textarea", "id": "list_items", "label": "List items (one per line)" },
+
+        { "type": "header", "content": "Paragraph with link (optional)" },
+        { "type": "text", "id": "link_prefix", "label": "Text before link" },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "url",  "id": "link_url",   "label": "Link URL" },
+        {
+          "type": "select",
+          "id": "link_target",
+          "label": "Link target",
+          "default": "_self",
+          "options": [
+            { "value": "_self", "label": "Same tab" },
+            { "value": "_blank", "label": "New tab" }
+          ]
+        },
+        { "type": "text", "id": "link_suffix", "label": "Text after link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policies layout (editable)",
+      "blocks": [
+        { "type": "menu_item", "settings": { "label": "Privacy policy", "icon_modifier": "--icon-system" } },
+        { "type": "menu_item", "settings": { "label": "Terms of use", "icon_modifier": "--icon-non-categorized" } },
+        { "type": "menu_item", "settings": { "label": "Return policy", "icon_modifier": "--icon-e-commerce" } },
+        { "type": "menu_item", "settings": { "label": "Legal notice", "icon_modifier": "--icon-non-categorized-two" } },
+
+        { "type": "policy_section", "settings": { "title": "1. General Information", "intro_text": "This Privacy Policy describes how we collect, use and protect the personal information of our customers and users of our website. We care about your privacy and the security of your personal information." } },
+        { "type": "policy_section", "settings": { "title": "2. Data Administrator", "intro_text": "The administrator of your personal data is Empiretextile Sp. z o.o. based in Lubartowska 71A,20-123 Lublin.", "link_prefix": "For questions contact ", "link_label": "biuro@empiretextile.pl", "link_url": "mailto:biuro@empiretextile.pl", "link_suffix": " or by phone +48 690 984 002." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

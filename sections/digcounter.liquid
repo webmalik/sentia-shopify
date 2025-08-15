@@ -1,0 +1,93 @@
+<section data-fls-sectiondigcounter class="sectiondigcounter">
+  <div class="sectiondigcounter__content">
+    <div data-fls-watcher class="sectiondigcounter__items">
+      {%- for block in section.blocks -%}
+        <div class="sectiondigcounter__item" {{ block.shopify_attributes }}>
+          <div class="sectiondigcounter__counter-block">
+            {%- if block.settings.value != blank -%}
+              <div data-fls-digcounter class="sectiondigcounter__counter">{{ block.settings.value }}</div>
+            {%- endif -%}
+            {%- if block.settings.symbol != blank -%}
+              <div class="sectiondigcounter__symbol">{{ block.settings.symbol }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="sectiondigcounter__headline-block">
+            {%- if block.settings.headline != blank -%}
+              <h2 class="sectiondigcounter__headline">{{ block.settings.headline }}</h2>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="sectiondigcounter__parahraph">
+                <p class="sectiondigcounter__text">{{ block.settings.text }}</p>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Digital counters",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Counter item",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Number (digits only)" },
+        { "type": "text", "id": "symbol", "label": "Symbol (k, +, % ...)" },
+        { "type": "text", "id": "headline", "label": "Headline" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Digital counters",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "value": "800",
+            "symbol": "k",
+            "headline": "Meters of Fabric",
+            "text": "Stable high-volume production."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "value": "10",
+            "symbol": "+",
+            "headline": "Years of Experience",
+            "text": "More than a decade in textile manufacturing."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "value": "6",
+            "symbol": "+",
+            "headline": "Product Categories",
+            "text": "A wide range of fabrics and textile products."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "value": "100",
+            "symbol": "%",
+            "headline": "Eco Commitment",
+            "text": "We prioritize sustainable and eco-friendly production."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

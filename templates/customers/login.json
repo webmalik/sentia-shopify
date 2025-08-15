@@ -12,9 +12,9 @@
     "main": {
       "type": "main-login",
       "settings": {
-        "enable_shop_login_button": "true",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Login to your account",
+        "image": "shopify://shop_images/image_cf9b839e-10b4-4bfd-ac3a-169831456783.png",
+        "image_link": ""
       }
     }
   },

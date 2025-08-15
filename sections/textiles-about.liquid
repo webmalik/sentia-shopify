@@ -1,0 +1,35 @@
+<section class="about__textiles textiles-about" data-fls-textilesabout>
+  {% if section.settings.video_bg %}
+    {{ section.settings.video_bg | video_tag:
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false,
+        playsinline: true,
+        preload: 'metadata',
+        class: 'textiles-about__bg ibg textiles-about__bg--video' }}
+  {% endif %}
+
+  <div class="textiles-about__container">
+    <div class="textiles-about__content">
+      <h2 class="textiles-about__headline">
+        {{ section.settings.title | default: "Textiles that invite touch, feel good to wear, and call you back" }}
+      </h2>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Textiles (video hero)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Title", "default": "Textiles that invite touch, feel good to wear, and call you back" },
+    { "type": "video", "id": "video_bg", "label": "Background video" }
+  ],
+  "presets": [
+    { "name": "Textiles (video hero)" }
+  ]
+}
+{% endschema %}

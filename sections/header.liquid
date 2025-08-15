@@ -89,7 +89,7 @@
         </select>
 
         <div class="actions-header__icons">
-          <a href="{{ section.settings.wishlist_url }}" class="actions-header__bookmarks">
+          <a href="{% if customer %}{{ routes.account_url }}#saved{% else %}{{ section.settings.wishlist_url }}{% endif %}" class="actions-header__bookmarks">
             <span class="--icon-heart"></span>
             <span class="--icon-heart-hover"></span>
           </a>

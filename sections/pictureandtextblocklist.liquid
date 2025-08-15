@@ -1,0 +1,134 @@
+<section data-fls-pictureandtextblocklist class="pictureandtextblocklist">
+  <div class="pictureandtextblocklist__content">
+    <div class="pictureandtextblocklist__items">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign layout_class = block.settings.layout
+          if layout_class != 'checkered'
+            assign layout_class = 'no-checkered'
+          endif
+        -%}
+
+        <div class="pictureandtextblocklist__item pictureandtextblocklist__item--{{ layout_class }}" {{ block.shopify_attributes }}>
+          {%- comment -%} IMAGE LEFT (for checkered) {%- endcomment -%}
+          {%- if layout_class == 'checkered' -%}
+            <div class="pictureandtextblocklist__image-block">
+              {%- assign link_href = block.settings.link_url | default: '#' -%}
+              <a href="{{ link_href }}" class="pictureandtextblocklist__link" {% if link_href == '#' %}aria-disabled="true"{% endif %}>
+                {%- if block.settings.image -%}
+                  <img
+                    class="pictureandtextblocklist__image ibg"
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image.alt | default: block.settings.headline | default: 'Image' | escape }}">
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}
+
+          <div class="pictureandtextblocklist__text-block">
+            {%- if block.settings.headline != blank -%}
+              <h2 class="pictureandtextblocklist__headline">{{ block.settings.headline }}</h2>
+            {%- endif -%}
+
+            {%- if block.settings.main_p1 != blank or block.settings.main_p2 != blank -%}
+              <div class="pictureandtextblocklist__parahraph pictureandtextblocklist__parahraph--one">
+                {%- if block.settings.main_p1 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.main_p1 }}</p>
+                {%- endif -%}
+                {%- if block.settings.main_p2 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.main_p2 }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.sub1_label != blank -%}
+              <div class="pictureandtextblocklist__sub-text">{{ block.settings.sub1_label }}</div>
+              <div class="pictureandtextblocklist__parahraph pictureandtextblocklist__parahraph--two">
+                {%- if block.settings.sub1_p1 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.sub1_p1 }}</p>
+                {%- endif -%}
+                {%- if block.settings.sub1_p2 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.sub1_p2 }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.sub2_label != blank -%}
+              <div class="pictureandtextblocklist__sub-text">{{ block.settings.sub2_label }}</div>
+              <div class="pictureandtextblocklist__parahraph pictureandtextblocklist__parahraph--two">
+                {%- if block.settings.sub2_p1 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.sub2_p1 }}</p>
+                {%- endif -%}
+                {%- if block.settings.sub2_p2 != blank -%}
+                  <p class="pictureandtextblocklist__text">{{ block.settings.sub2_p2 }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- comment -%} IMAGE RIGHT (for no-checkered) {%- endcomment -%}
+          {%- if layout_class != 'checkered' -%}
+            <div class="pictureandtextblocklist__image-block">
+              {%- assign link_href = block.settings.link_url | default: '#' -%}
+              <a href="{{ link_href }}" class="pictureandtextblocklist__link" {% if link_href == '#' %}aria-disabled="true"{% endif %}>
+                {%- if block.settings.image -%}
+                  <img
+                    class="pictureandtextblocklist__image ibg"
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image.alt | default: block.settings.headline | default: 'Image' | escape }}">
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Picture & text block list",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "no-checkered",
+          "options": [
+            { "value": "no-checkered", "label": "No checkered (text left, image right)" },
+            { "value": "checkered", "label": "Checkered (image left, text right)" }
+          ]
+        },
+        { "type": "text", "id": "headline", "label": "Headline" },
+
+        { "type": "header", "content": "Main paragraphs (no subhead)" },
+        { "type": "textarea", "id": "main_p1", "label": "Paragraph 1" },
+        { "type": "textarea", "id": "main_p2", "label": "Paragraph 2" },
+
+        { "type": "header", "content": "Subsection 1" },
+        { "type": "text", "id": "sub1_label", "label": "Subheading 1" },
+        { "type": "textarea", "id": "sub1_p1", "label": "Paragraph 1" },
+        { "type": "textarea", "id": "sub1_p2", "label": "Paragraph 2" },
+
+        { "type": "header", "content": "Subsection 2" },
+        { "type": "text", "id": "sub2_label", "label": "Subheading 2" },
+        { "type": "textarea", "id": "sub2_p1", "label": "Paragraph 1" },
+        { "type": "textarea", "id": "sub2_p2", "label": "Paragraph 2" },
+
+        { "type": "header", "content": "Image & link" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link_url", "label": "Link URL (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Picture & text block list" }]
+}
+{% endschema %}

@@ -2,7 +2,7 @@
   <div class="productcard__content">
     <a href="{{ product.url }}" class="productcard__link">
       <div class="productcard__top">
-        <button type="button" class="productcard__save" aria-label="Add to wishlist"></button>
+        <button type="button" class="productcard__save wishlist-button" data-id="{{ product.id }}" aria-label="Add to wishlist"></button>
         <div class="productcard__gallery-block">
           <div class="productcard__gallery productcard__gallery--home">
             {% if product.images.size > 0 %}
