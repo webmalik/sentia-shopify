@@ -31,30 +31,30 @@
             "product": "bath-towels"
           }
         },
-        "product_block_TemYkQ": {
+        "product_block_Rpt4kw": {
           "type": "product_block",
           "settings": {
-            "product": "bath-towels"
+            "product": "beach-towels"
           }
         },
-        "product_block_FtJCNX": {
+        "product_block_LtYGPV": {
           "type": "product_block",
           "settings": {
-            "product": "bath-towels"
+            "product": "cream-classic"
           }
         },
-        "product_block_QKy4yL": {
+        "product_block_YU6Naa": {
           "type": "product_block",
           "settings": {
-            "product": "bath-towels"
+            "product": "cream-classic-2"
           }
         }
       },
       "block_order": [
         "product_block_KeXYd7",
-        "product_block_TemYkQ",
-        "product_block_FtJCNX",
-        "product_block_QKy4yL"
+        "product_block_Rpt4kw",
+        "product_block_LtYGPV",
+        "product_block_YU6Naa"
       ],
       "name": "View all products",
       "settings": {

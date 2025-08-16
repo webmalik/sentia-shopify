@@ -455,3 +455,10 @@ button:disabled {
 .account__notice {
     margin-top: 20px;
 }
+
+.related-products {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+}

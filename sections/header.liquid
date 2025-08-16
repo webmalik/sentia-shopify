@@ -110,22 +110,27 @@
     const path = window.location.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
     const query = window.location.search;
 
-    return langCode === defaultLocale
-      ? `${path}${query}`
-      : `/${langCode}${path}${query}`;
+    return langCode === defaultLocale ? `${path}${query}` : `/${langCode}${path}${query}`;
   };
 
-  document.addEventListener("selectCallback", function (e) {
-    const select = e.detail.select;
-    const value = select.value?.toLowerCase();
+  // Тільки мовний селект
+  document.addEventListener('selectCallback', (e) => {
+    const select = e?.detail?.select || e.target;
+    if (!select) return;
+
+    // фільтр: реагуємо лише на <select class="actions-header__lang">
+    if (!select.matches('select.actions-header__lang')) return;
+
+    const value = (select.value || '').toLowerCase().trim();
     if (!value) return;
 
     const redirectUrl = getRedirectUrl(value);
     if (redirectUrl) window.location.href = redirectUrl;
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const langLinks = document.querySelectorAll('.menu__lang-list a');
+  // Кліки по посиланнях мов (як було)
+  document.addEventListener('DOMContentLoaded', () => {
+    const langLinks = document.querySelectorAll('.menu__lang-list a, .menu__lang-item a');
     langLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -136,6 +141,7 @@
     });
   });
 </script>
+
 
 {% schema %}
 {

@@ -1,0 +1,91 @@
+{% comment %}
+  Block 2: Made to match
+  1) Якщо product.metafields.custom['made_to_match'] заповнене (list.product) → рендеримо його
+  2) Інакше → fallback через <product-recommendations> (recommendations.*)
+{% endcomment %}
+
+<section data-fls-viewall class="viewall viewall--product">
+  <div class="viewall__content">
+    <div class="viewall__container">
+      <div class="viewall__title-block">
+        <h2 class="viewall__title">{{ section.settings.title | default: 'Made to match' | escape }}</h2>
+        {% if section.settings.view_all_url != blank %}
+          <a href="{{ section.settings.view_all_url }}" class="viewall__link">{{ section.settings.view_all_text | default: 'View all' }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% assign limit = section.settings.limit | default: 4 %}
+    {% assign only_available = section.settings.only_available %}
+    {% assign rendered = 0 %}
+
+    <div class="viewall__items">
+      {%- comment -%} Прямий доступ до list.product {%- endcomment -%}
+      {% assign mf = product.metafields.custom['made_to_match'] %}
+      {% assign related = '' %}
+      {% if mf != blank %}
+        {% assign related = mf.value %}
+      {% endif %}
+
+      {% if related != blank %}
+        {% for p in related limit: limit %}
+          {% if p.id == product.id %}{% continue %}{% endif %}
+          {% if only_available and p.available == false %}{% continue %}{% endif %}
+          <div class="viewall__item mf">
+            {% render 'product-card', product: p %}
+          </div>
+          {% assign rendered = rendered | plus: 1 %}
+        {% endfor %}
+      {% endif %}
+
+      {%- comment -%} Fallback: рекомендації Shopify, рендеримо нашою версткою {%- endcomment -%}
+      {% if rendered == 0 %}
+        <product-recommendations
+          data-url="{{ routes.product_recommendations_url }}?limit={{ limit }}"
+          data-section-id="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+        >
+          {% if recommendations.performed and recommendations.products_count > 0 %}
+            {% for p in recommendations.products %}
+              {% if p.id == product.id %}{% continue %}{% endif %}
+              {% if only_available and p.available == false %}{% continue %}{% endif %}
+              <div class="viewall__item rec">
+                {% render 'product-card', product: p %}
+              </div>
+              {% assign rendered = rendered | plus: 1 %}
+              {% if rendered >= limit %}{% break %}{% endif %}
+            {% endfor %}
+          {% endif %}
+        </product-recommendations>
+      {% endif %}
+
+      {% if rendered == 0 and section.settings.hide_if_empty %}
+      {% elsif rendered == 0 %}
+        <div class="viewall__item">
+          <div class="productcard">
+            <div class="productcard__content">
+              <div class="productcard__bottom">
+                <h2 class="productcard__headline">{{ 'sections.collection_template.empty' | t }}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related – Made to match",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Made to match" },
+    { "type": "url", "id": "view_all_url", "label": "View all URL (optional)" },
+    { "type": "text", "id": "view_all_text", "label": "View all text", "default": "View all" },
+    { "type": "checkbox", "id": "only_available", "label": "Only available products", "default": true },
+    { "type": "range", "id": "limit", "label": "Items limit", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "hide_if_empty", "label": "Hide section if no products", "default": true }
+  ],
+  "presets": [{ "name": "Related – Made to match" }]
+}
+{% endschema %}

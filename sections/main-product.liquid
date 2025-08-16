@@ -130,25 +130,48 @@
         <div class="rightfixed-productpage__header">
           <h2 class="rightfixed-productpage__title">Key Specifications</h2>
         </div>
-
-        <div data-fls-tabs class="rightfixed-productpage__tabs">
-          <nav data-fls-tabs-titles class="rightfixed-productpage__navigation">
-            <button type="button" class="rightfixed-productpage__title-tab --tab-active">Materials & Care</button>
-            <button type="button" class="rightfixed-productpage__title-tab">Size guide</button>
-            <button type="button" class="rightfixed-productpage__title-tab">Shipping & Return</button>
-          </nav>
-          <div data-fls-tabs-body class="rightfixed-productpage__content">
-            <div class="rightfixed-productpage__body">
-              <p class="rightfixed-productpage__text-one">{{ product.metafields.custom.materials_and_care | default: 'No information provided' }}</p>
-            </div>
-            <div class="rightfixed-productpage__body">
-              <p class="rightfixed-productpage__text-one">{{ product.metafields.custom.size_guide | default: 'No size guide available' }}</p>
-            </div>
-            <div class="rightfixed-productpage__body">
-              <p class="rightfixed-productpage__text-one">{{ product.metafields.custom.shipping_and_return | default: 'No shipping info available' }}</p>
-            </div>
-          </div>
-        </div>
+		{% assign spollers = product.metafields.custom.specifications.value %}
+		{% assign has_blocks = section.blocks | where: "type", "spoller" | size %}
+        
+		{% if spollers%}
+			<div data-fls-tabs class="rightfixed-productpage__tabs">
+				<nav data-fls-tabs-titles class="rightfixed-productpage__navigation">
+					{% for spoller in spollers %}
+						<button type="button" class="rightfixed-productpage__title-tab {% if forloop.first %} --tab-active{% endif %}">{{ spoller.title }}</button>
+					{% endfor %}
+				</nav>
+				<div data-fls-tabs-body class="rightfixed-productpage__content">
+					{% for spoller in spollers %}
+						<div class="rightfixed-productpage__body">
+							<div class="rightfixed-productpage__text-one rte">
+								{{ spoller.text | metafield_tag }}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% elsif has_blocks > 0 %}
+			<div data-fls-tabs class="rightfixed-productpage__tabs">
+				<nav data-fls-tabs-titles class="rightfixed-productpage__navigation">
+					{% for block in section.blocks %}
+						{% if block.type == 'spoller' %}
+							<button type="button" class="rightfixed-productpage__title-tab {% if forloop.first %} --tab-active{% endif %}">{{ block.settings.title }}</button>
+						{% endif %}
+					{% endfor %}
+				</nav>
+				<div data-fls-tabs-body class="rightfixed-productpage__content">
+					{% for block in section.blocks %}
+						{% if block.type == 'spoller' %}
+							<div class="rightfixed-productpage__body">
+								<div class="rightfixed-productpage__text-one rte">
+								{{ block.settings.content }}
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
       </div>
     </div>
 
@@ -165,7 +188,27 @@
 {% schema %}
 {
   "name": "Main Product",
-  "settings": [],
+  "settings": [
+	
+  ],
+  "blocks": [
+    {
+      "type": "spoller",
+      "name": "Tab block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tab content"
+        }
+      ]
+    }
+  ],
   "presets": [{ "name": "Main Product" }]
 }
 {% endschema %}

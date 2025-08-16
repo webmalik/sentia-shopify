@@ -1,0 +1,105 @@
+{% comment %}
+  ViewAll / Similar (Block 1)
+  1) Якщо product.metafields.custom['similar_products'] (list.product) заповнене → рендеримо його
+  2) Інакше → беремо товари з fallback-колекції або першої колекції продукту
+     - виключаємо поточний продукт
+     - only_available (опційно)
+     - ліміт = 4 (або з налаштувань)
+  View all → завжди на першу колекцію товару (якщо вона є)
+{% endcomment %}
+
+<section data-fls-viewall class="viewall viewall--product">
+  <div class="viewall__content">
+    <div class="viewall__container">
+      <div class="viewall__title-block">
+        <h2 class="viewall__title">
+          {{ section.settings.title | default: 'Similar styles' | escape }}
+        </h2>
+
+        {%- comment -%} View all → колекція поточного товару {%- endcomment -%}
+        {%- assign prod_coll = nil -%}
+        {%- if product and product.collections and product.collections.size > 0 -%}
+          {%- assign prod_coll = product.collections.first -%}
+        {%- endif -%}
+        {%- if prod_coll -%}
+          <a href="{{ prod_coll.url }}" class="viewall__link">
+            {{ section.settings.view_all_text | default: 'View all' }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- assign limit = section.settings.limit | default: 4 -%}
+    {%- assign only_available = section.settings.only_available -%}
+    {%- assign rendered = 0 -%}
+
+    <div class="viewall__items">
+      {%- comment -%} 1) Метаполе (list.product) {%- endcomment -%}
+      {%- assign mf = product.metafields.custom['similar_products'] -%}
+      {%- assign related = '' -%}
+      {%- if mf != blank -%}
+        {%- assign related = mf.value -%}
+      {%- endif -%}
+
+      {%- if related != blank -%}
+        {%- for p in related limit: limit -%}
+          {%- if p.id == product.id -%}{%- continue -%}{%- endif -%}
+          {%- if only_available and p.available == false -%}{%- continue -%}{%- endif -%}
+          <div class="viewall__item">{%- render 'product-card', product: p -%}</div>
+          {%- assign rendered = rendered | plus: 1 -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} 2) Fallback з колекції {%- endcomment -%}
+        {%- assign coll = nil -%}
+        {%- if section.settings.use_fallback_collection and section.settings.fallback_collection != blank -%}
+          {%- assign coll = collections[section.settings.fallback_collection] -%}
+        {%- elsif prod_coll -%}
+          {%- assign coll = prod_coll -%}
+        {%- endif -%}
+
+        {%- if coll and coll.products_count > 0 -%}
+          {%- for p in coll.products -%}
+            {%- if p.id == product.id -%}{%- continue -%}{%- endif -%}
+            {%- if only_available and p.available == false -%}{%- continue -%}{%- endif -%}
+            <div class="viewall__item">{%- render 'product-card', product: p -%}</div>
+            {%- assign rendered = rendered | plus: 1 -%}
+            {%- if rendered >= limit -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if rendered == 0 and section.settings.hide_if_empty -%}
+      {%- elsif rendered == 0 -%}
+        <div class="viewall__item">
+          <div class="productcard">
+            <div class="productcard__content">
+              <div class="productcard__bottom">
+                <h2 class="productcard__headline">{{ 'sections.collection_template.empty' | t }}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related – Similar",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Similar styles" },
+    { "type": "text", "id": "view_all_text", "label": "View all text", "default": "View all" },
+
+    { "type": "checkbox", "id": "only_available", "label": "Only available products", "default": true },
+    { "type": "range", "id": "limit", "label": "Items limit", "min": 2, "max": 8, "step": 1, "default": 4 },
+
+    { "type": "header", "content": "Fallback collection (if metafield empty)" },
+    { "type": "checkbox", "id": "use_fallback_collection", "label": "Use specific collection if metafield empty", "default": false },
+    { "type": "text", "id": "fallback_collection", "label": "Collection handle (e.g. bath-towels)" },
+
+    { "type": "checkbox", "id": "hide_if_empty", "label": "Hide section if no products", "default": true }
+  ],
+  "presets": [{ "name": "Related – Similar" }]
+}
+{% endschema %}

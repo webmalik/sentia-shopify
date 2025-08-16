@@ -12,97 +12,64 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "spoller_tdRpBD": {
+          "type": "spoller",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "title": "Materials & Care",
+            "content": "<p>Our Cream Cotton bedding is made from 100% natural cotton — soft to the touch, breathable for a restful sleep, and durable for everyday use.<br/><br/><strong>Care</strong></p><p><br/>We recommend machine washing at 40°C with similar colors. Avoid bleach to preserve fabric quality. For best results, tumble dry on low or let it air dry naturally. Iron on medium heat if desired.<br/><br/>With proper care, your bedding will stay fresh, cozy, and beautiful for years.<br/><br/><br/></p>"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
+        "spoller_BzrELM": {
+          "type": "spoller",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "title": "Size guide",
+            "content": "<p>Our Cream Cotton bedding is made from 100% natural cotton — soft to the touch, breathable for a restful sleep, and durable for everyday use.<br/><br/></p>"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
+        "spoller_GWA87b": {
+          "type": "spoller",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
+            "title": "Shipping & Retern",
+            "content": "<p>Our Cream Cotton bedding is made from 100% natural cotton — soft to the touch, breathable for a restful sleep, and durable for everyday use.<br/><br/></p>"
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
+        "spoller_tdRpBD",
+        "spoller_BzrELM",
+        "spoller_GWA87b"
       ],
+      "settings": {}
+    },
+    "viewall_similar_CcniwF": {
+      "type": "viewall-similar",
+      "name": "Related – Similar (Block 1)",
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "title": "Also Comes in Other Colors",
+        "view_all_text": "View all",
+        "only_available": true,
+        "limit": 4,
+        "use_fallback_collection": false,
+        "fallback_collection": "",
+        "hide_if_empty": true
       }
     },
-    "related-products": {
-      "type": "related-products",
+    "viewall_mtt_ndwBTn": {
+      "type": "viewall-mtt",
+      "name": "Related – Made to match",
       "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "title": "Made to match",
+        "view_all_url": "shopify://collections/all",
+        "view_all_text": "View all",
+        "only_available": false,
+        "limit": 4,
+        "hide_if_empty": true
       }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "viewall_similar_CcniwF",
+    "viewall_mtt_ndwBTn"
   ]
 }
