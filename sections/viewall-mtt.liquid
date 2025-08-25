@@ -31,7 +31,7 @@
         {% for p in related limit: limit %}
           {% if p.id == product.id %}{% continue %}{% endif %}
           {% if only_available and p.available == false %}{% continue %}{% endif %}
-          <div class="viewall__item mf">
+          <div class="viewall__item">
             {% render 'product-card', product: p %}
           </div>
           {% assign rendered = rendered | plus: 1 %}
@@ -44,12 +44,13 @@
           data-url="{{ routes.product_recommendations_url }}?limit={{ limit }}"
           data-section-id="{{ section.id }}"
           data-product-id="{{ product.id }}"
+		  class="related-products"
         >
           {% if recommendations.performed and recommendations.products_count > 0 %}
             {% for p in recommendations.products %}
               {% if p.id == product.id %}{% continue %}{% endif %}
               {% if only_available and p.available == false %}{% continue %}{% endif %}
-              <div class="viewall__item rec">
+              <div class="viewall__item">
                 {% render 'product-card', product: p %}
               </div>
               {% assign rendered = rendered | plus: 1 %}

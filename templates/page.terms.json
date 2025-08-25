@@ -24,8 +24,8 @@
         "menu_item_LJbDMf": {
           "type": "menu_item",
           "settings": {
-            "label": "Terms of use",
-            "url": "shopify://pages/terms-of-use",
+            "label": "Terms of Sale",
+            "url": "shopify://pages/terms-of-sale",
             "icon_modifier": "--icon-non-categorized",
             "active": false
           }
@@ -52,7 +52,7 @@
           "type": "policy_section",
           "settings": {
             "title": "1. General Information",
-            "intro_text": "This Privacy Policy describes how we collect, use and protect the\n\t\t\t\t\t\tpersonal information of our customers and users of our website. We care about your privacy and the\n\t\t\t\t\t\tsecurity of your personal information.",
+            "intro_text": "These Terms define the rules for using the online store: www.sentiahome.pl (hereinafter: “Store”), placing orders for products available in the Store, delivery, payment, withdrawal rights, and complaints procedure.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -66,12 +66,12 @@
         "policy_section_RkaEAV": {
           "type": "policy_section",
           "settings": {
-            "title": "2. Data Administrator",
-            "intro_text": "",
+            "title": "2.COMPANY INFORMATION",
+            "intro_text": "Orders are processed by:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "",
-            "link_prefix": "The administrator of your personal data is Empiretextile Sp. z\t\t\t\t\t\to.o. based in Lubartowska 71A,20-123 Lublin. If you have any questions about this Privacy Policy,\t\t\t\t\t\tplease contact us by email at biuro@empiretextile.pl or by phone at",
+            "list_items": "Empiretextile Sp. z o.o.\nul. Zbąszyńska 3V, 91-342 Łódź, Poland\nNIP: 7011074017, REGON: 521213876\nKRS: 0000952385",
+            "link_prefix": "biuro@empiretextile.pl",
             "link_label": "+48 690 984 002.",
             "link_url": "tel:+48690984002",
             "link_target": "_self",
@@ -81,11 +81,11 @@
         "policy_section_qHjrYE": {
           "type": "policy_section",
           "settings": {
-            "title": "3. What Data We Collect",
-            "intro_text": "We may collect the following personal data:",
+            "title": "3. PRODUCT INFORMATION",
+            "intro_text": "The Store specializes in the sale of home textiles such as towels, bathrobes, bedding, socks, underwear, and related textile accessories.\nAll products are new, original, and sourced directly from verified manufacturers under the Sentia Home brand.",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Name\nE-mail address\nDelivery address\nPhone number\nInformation about purchases and transactions\nInformation about the use of our website (cookies, IP address, browser data)",
+            "list_items": "",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -96,11 +96,11 @@
         "policy_section_KE9gDt": {
           "type": "policy_section",
           "settings": {
-            "title": "4. How We Use Data",
-            "intro_text": "Your personal data may be used for the following purposes:",
+            "title": "4. PRICES",
+            "intro_text": "All prices are shown in EUR and include VAT.\nShipping costs are not included in the product prices and are calculated during checkout.\nWe reserve the right to update prices, product availability, and promotional offers without prior notice. Changes do not apply to confirmed orders.",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Fulfillment of orders and delivery of products\nPayment processing\nCustomer communication (order confirmations, updates, responses to inquiries)\nPersonalization of offerings and product recommendations\nInformation about purchases and transactions\nMarketing (if you have consented to receive marketing materials)\nAnalysis and improvement of our website and services",
+            "list_items": "",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -111,11 +111,11 @@
         "policy_section_Dhrgyp": {
           "type": "policy_section",
           "settings": {
-            "title": "5. Legal Basis for Data Processing",
+            "title": "5. PLACING ORDERS",
             "intro_text": "We process your personal data based on:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Performance of a contract (Article 6(1)(b) of the RODO)\nConsent given by you (Article 6(1)(a) of the RODO)\nLegitimate interests of the controller (Article 6(1)(f) of the RODO)",
+            "list_items": "1.\tOrders may be placed via www.sentiahome.pl 24/7.\n\t2.\tCreating an account is not required to place an order.\n\t3.\tTo finalize an order, the customer must:\nAdd products to the cart\nFill in the shipping details\nSelect delivery and payment method\nConfirm the order with the “Order with payment obligation” button\nAn order confirmation will be sent via email.\nThe contract is concluded when the customer receives the confirmation.",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -126,11 +126,11 @@
         "policy_section_RXG8GK": {
           "type": "policy_section",
           "settings": {
-            "title": "6. Storage of Data",
-            "intro_text": "Your personal data will be stored for the period necessary to\n\t\t\t\t\t\tfulfill the purposes for which they were collected, unless longer storage is required or permitted\n\t\t\t\t\t\tby law.",
+            "title": "6. PAYMENTS",
+            "intro_text": "Accepted payment methods:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "",
+            "list_items": "Przelewy24 (including Visa, Mastercard, bank transfers)\nShopify Payments\nOrders are processed after payment is confirmed. Payment should be completed within 5 business days.",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -141,11 +141,11 @@
         "policy_section_wz686X": {
           "type": "policy_section",
           "settings": {
-            "title": "7. Sharing of Data",
-            "intro_text": "Your personal data may be shared with:",
-            "outro_text": "",
+            "title": "7. DELIVERY",
+            "intro_text": "We deliver via:",
+            "outro_text": "Delivery time: 2–7 business days depending on destination.\n\nThe buyer receives tracking info via email upon shipment. If a parcel is visibly damaged upon delivery, please report it to the courier immediately and request a damage protocol.",
             "list_intro": "",
-            "list_items": "To service providers (e.g., courier companies, payment providers)\nTo business partners (if necessary to process your order)\nTo law enforcement agencies if required by law",
+            "list_items": "DHL\nInPost\nDPD",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -156,11 +156,11 @@
         "policy_section_tHmC47": {
           "type": "policy_section",
           "settings": {
-            "title": "8. Users' Rights",
-            "intro_text": "",
+            "title": "8. PRODUCT AVAILABILITY",
+            "intro_text": "Orders are fulfilled based on product availability in our warehouse.\nIn case of missing stock, the customer will be informed and offered:",
             "outro_text": "",
-            "list_intro": "You have the right to:",
-            "list_items": "Access your personal data\nCorrect your personal data\nDelete your personal data (right to be forgotten)\nRestrict the processing of your personal data\nTransfer your personal data\nObject to the processing of your personal data\nWithdraw your consent to the processing of your data at any time",
+            "list_intro": "",
+            "list_items": "A partial shipment\nExtended delivery time\nAn alternative product\nOrder cancellation with a full refund",
             "link_prefix": "To exercise these rights, please contact us at",
             "link_label": "biuro@empiretextile.pl.",
             "link_url": "mailto:biuro@empiretextile.pl",
@@ -171,11 +171,11 @@
         "policy_section_3W3nkt": {
           "type": "policy_section",
           "settings": {
-            "title": "9. Data Security",
-            "intro_text": "We take care of the security of your personal data and use\n\t\t\t\t\t\tappropriate technical and organizational measures to protect it from unauthorized access, loss,\n\t\t\t\t\t\tdestruction or modification.",
-            "outro_text": "",
+            "title": "9. RIGHT OF WITHDRAWAL",
+            "intro_text": "You have the right to withdraw from the contract within 14 days without giving any reason. The return period starts the day you receive the goods.\nTo withdraw, send a clear statement (e.g. email or letter) to:",
+            "outro_text": "Refunds will be issued using the same payment method, within 14 days of receiving the returned goods. Return shipping costs are paid by the customer.\nWe reserve the right to withhold the refund until we receive the goods or proof of their return.",
             "list_intro": "",
-            "list_items": "",
+            "list_items": "Empiretextile Sp. z o.o.\nul. Zbąszyńska 3V, 91-342 Łódź, Poland\n biuro@empiretextile.pl",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -186,11 +186,11 @@
         "policy_section_U6KRed": {
           "type": "policy_section",
           "settings": {
-            "title": "10. Cookies",
-            "intro_text": "Our website uses cookies to improve functionality and personalize\n\t\t\t\t\t\tour offerings. You can manage your cookie settings in your web browser.",
-            "outro_text": "",
+            "title": "10. EXCEPTIONS TO RETURNS",
+            "intro_text": "Due to hygiene reasons, we do not accept returns on:",
+            "outro_text": "Also, partial returns of sets (e.g. multipacks) are not allowed. The entire set must be returned intact.",
             "list_intro": "",
-            "list_items": "",
+            "list_items": "Underwear (e.g. briefs, boxers, socks)\nOpened or used towels, bathrobes, or bedding\nProducts in sealed packaging once opened",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -201,11 +201,11 @@
         "policy_section_UPqXPh": {
           "type": "policy_section",
           "settings": {
-            "title": "11. Changes to the Privacy Policy",
-            "intro_text": "We reserve the right to make changes to this Privacy Policy. We\n\t\t\t\t\t\twill inform you of any changes on our website.",
-            "outro_text": "",
+            "title": "11. COMPLAINTS AND WARRANTY",
+            "intro_text": "We guarantee that our products are free of physical or legal defects.\nIf a defect is found, the customer has the right to:",
+            "outro_text": "To make a complaint, contact us at biuro@empiretextile.pl\nAttach order details and clear photos of the issue. Complaints are processed within 14 days.",
             "list_intro": "",
-            "list_items": "",
+            "list_items": "Request repair or replacement\nRequest a price reduction\nWithdraw from the contract (if the defect is significant)",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -216,11 +216,11 @@
         "policy_section_zchQDf": {
           "type": "policy_section",
           "settings": {
-            "title": "12. Contact",
+            "title": "12. FINAL PROVISIONS",
             "intro_text": "",
-            "outro_text": "This Privacy Policy is intended to provide transparency in the\n\t\t\t\t\t\tprocessing of your personal data and to protect your privacy. Thank you for your trust and use of\n\t\t\t\t\t\tour services.",
-            "list_intro": "If you have any questions about this Privacy Policy, please                        contact:",
-            "list_items": "E-mail: <a href=\"mailto:biuro@empiretextile.pl\" class=\"right-privacypolicy__link-contact\">biuro@empiretextile.pl</a>\nPhone: <a href=\"tel:+48690984002\" class=\"right-privacypolicy__link-contact\">+48 690 984 002</a>\nAddress: <a href=\"https://maps.app.goo.gl/C1fSWvZNPy2DitAz6\" class=\"right-privacypolicy__link-contact\">Zbąszyńska 3V, 91-342 Łódź</a>",
+            "outro_text": "",
+            "list_intro": "",
+            "list_items": "The store operates under Polish law.\nIn case of disputes, we will first seek an amicable resolution.\nFull legal info and consumer rights can be found at: https://www.uokik.gov.pl\nYou can also use the EU ODR platform for dispute resolution: https://ec.europa.eu/odr",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -249,7 +249,7 @@
       ],
       "settings": {
         "menu_title": "Our Policies",
-        "right_title": "Terms of use",
+        "right_title": "Terms of sale",
         "help_label": "Need help?",
         "help_url": "shopify://pages/contact"
       }

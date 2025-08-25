@@ -272,7 +272,10 @@
       "pages": "Strony"
     },
     "cart": {
-      "cart": "Koszyk"
+      "cart": "Koszyk",
+      "subtotal": "SUMA CZĘŚCIOWA:",
+      "checkout": "Wymeldować się",
+      "step": "Vouchery i koszty końcowe zostaną obliczone w następnym kroku"
     },
     "contact": {
       "form": {
@@ -283,7 +286,8 @@
         "send": "Wyślij",
         "post_success": "Dziękujemy za skontaktowanie się z nami. Skontaktujemy się z Tobą tak szybko, jak to możliwe.",
         "error_heading": "Dostosuj następujące dane:",
-        "title": "Formularz kontaktowy"
+        "title": "Formularz kontaktowy",
+        "surname": "Nazwisko"
       }
     },
     "404": {
@@ -317,7 +321,8 @@
         "price": "Cena",
         "total": "Suma",
         "quantity": "Ilość",
-        "image": "Obraz produktu"
+        "image": "Obraz produktu",
+        "size": "Rozmiar"
       },
       "login": {
         "title": "Masz już konto?",
@@ -467,7 +472,9 @@
       "title": "Login",
       "sign_in": "Zaloguj się",
       "submit": "Prześlij",
-      "alternate_provider_separator": "lub"
+      "alternate_provider_separator": "lub",
+      "remember_me": "Pamiętaj mnie",
+      "dont_account": "Nie masz konta?"
     },
     "order": {
       "title": "Zamówienie {{ name }}",
@@ -524,6 +531,14 @@
       "password": "Hasło",
       "password_confirm": "Potwierdź hasło",
       "submit": "Zresetuj hasło"
+    },
+    "account_nav": {
+      "title": "Nawigacja konta",
+      "greeting_html": "Cześć, {{ name }} !",
+      "my_profile": "Szczegóły profilu",
+      "my_orders": "Moje zamówienia",
+      "my_wishlist": "Moje zapisane przedmioty",
+      "sign_out": "Wyloguj się"
     }
   },
   "gift_cards": {
@@ -556,6 +571,16 @@
       "send_on_label": "Wyślij dnia (opcjonalnie)",
       "expanded": "Rozwinięty formularz odbiorcy karty prezentowej",
       "collapsed": "Zwinięty formularz odbiorcy karty prezentowej"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "stock": {
+        "out_of_stock_in_context_label": "Ten produkt nie jest dostępny w Twoim kraju/regionie."
+      },
+      "merchant_instruction_errors": {
+        "invalid_entrypoint_for_remote_negotiation": "Instrukcji dotyczących negocjacji zdalnych nie można przekazać do sesji negocjacji, która nie odbywa się na odległość."
+      }
     }
   }
 }

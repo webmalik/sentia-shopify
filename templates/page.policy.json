@@ -25,7 +25,7 @@
           "type": "menu_item",
           "settings": {
             "label": "Terms of use",
-            "url": "shopify://pages/terms-of-use",
+            "url": "shopify://pages/terms-of-sale",
             "icon_modifier": "--icon-non-categorized",
             "active": false
           }
@@ -52,7 +52,7 @@
           "type": "policy_section",
           "settings": {
             "title": "1. General Information",
-            "intro_text": "This Privacy Policy describes how we collect, use and protect the\n\t\t\t\t\t\tpersonal information of our customers and users of our website. We care about your privacy and the\n\t\t\t\t\t\tsecurity of your personal information.",
+            "intro_text": "This Privacy Policy describes how personal data is collected, processed, and used through the website https://sentiahome.pl/ (hereinafter: “Online Store”).",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -70,9 +70,9 @@
             "intro_text": "",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "",
-            "link_prefix": "The administrator of your personal data is Empiretextile Sp. z\t\t\t\t\t\to.o. based in Lubartowska 71A,20-123 Lublin. If you have any questions about this Privacy Policy,\t\t\t\t\t\tplease contact us by email at biuro@empiretextile.pl or by phone at",
-            "link_label": "+48 690 984 002.",
+            "list_items": "The data administrator is Empiretextile Sp. z o.o.\nul. Żurawia 6/12 / 745, 00-503 Warszawa, Poland\nNIP: 7011259952\nEmail: biuro@empiretextile.pl\n\nThe company is registered in the Register of Entrepreneurs of the National Court Register (KRS).",
+            "link_prefix": "",
+            "link_label": "",
             "link_url": "tel:+48690984002",
             "link_target": "_self",
             "link_suffix": ""
@@ -81,11 +81,11 @@
         "policy_section_qHjrYE": {
           "type": "policy_section",
           "settings": {
-            "title": "3. What Data We Collect",
-            "intro_text": "We may collect the following personal data:",
+            "title": "3. Purpose of Data Collection",
+            "intro_text": "Personal data is collected for the following purposes:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Name\nE-mail address\nDelivery address\nPhone number\nInformation about purchases and transactions\nInformation about the use of our website (cookies, IP address, browser data)",
+            "list_items": "Creating and managing customer accounts\nFulfilling orders placed in the Online Store\nCustomer service and direct communication\nSending marketing information (only with prior consent)",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -96,11 +96,11 @@
         "policy_section_KE9gDt": {
           "type": "policy_section",
           "settings": {
-            "title": "4. How We Use Data",
-            "intro_text": "Your personal data may be used for the following purposes:",
+            "title": "4. Legal Basis for Processing",
+            "intro_text": "Data is processed in accordance with Art. 6 of the GDPR:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Fulfillment of orders and delivery of products\nPayment processing\nCustomer communication (order confirmations, updates, responses to inquiries)\nPersonalization of offerings and product recommendations\nInformation about purchases and transactions\nMarketing (if you have consented to receive marketing materials)\nAnalysis and improvement of our website and services",
+            "list_items": "6.1.b – performance of the contract\n6.1.c – compliance with legal obligations\n6.1.f – legitimate interests of the administrator\n6.1.a – based on your consent (e.g., for newsletters)",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -111,11 +111,11 @@
         "policy_section_Dhrgyp": {
           "type": "policy_section",
           "settings": {
-            "title": "5. Legal Basis for Data Processing",
-            "intro_text": "We process your personal data based on:",
+            "title": "5. Scope of Collected Data",
+            "intro_text": "We may process the following customer data:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Performance of a contract (Article 6(1)(b) of the RODO)\nConsent given by you (Article 6(1)(a) of the RODO)\nLegitimate interests of the controller (Article 6(1)(f) of the RODO)",
+            "list_items": "Full name\nEmail address\nPhone number\nDelivery address\nBilling address (if different)\nCompany name and NIP (for business clients)",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -126,11 +126,11 @@
         "policy_section_RXG8GK": {
           "type": "policy_section",
           "settings": {
-            "title": "6. Storage of Data",
-            "intro_text": "Your personal data will be stored for the period necessary to\n\t\t\t\t\t\tfulfill the purposes for which they were collected, unless longer storage is required or permitted\n\t\t\t\t\t\tby law.",
+            "title": "6. Data Retention Period",
+            "intro_text": "Personal data will be stored:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "",
+            "list_items": "As long as the customer account is active\nAfter account closure – for a period necessary to fulfill legal obligations, handle complaints, and enforce claims",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -141,11 +141,11 @@
         "policy_section_wz686X": {
           "type": "policy_section",
           "settings": {
-            "title": "7. Sharing of Data",
-            "intro_text": "Your personal data may be shared with:",
+            "title": "7. Data Recipients",
+            "intro_text": "Your personal data may be transferred to:",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "To service providers (e.g., courier companies, payment providers)\nTo business partners (if necessary to process your order)\nTo law enforcement agencies if required by law",
+            "list_items": "Courier/delivery service providers\nElectronic payment processors (e.g. Przelewy24)\nIT service providers operating under data processing agreements",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -156,11 +156,11 @@
         "policy_section_tHmC47": {
           "type": "policy_section",
           "settings": {
-            "title": "8. Users' Rights",
+            "title": "8. Customer Rights",
             "intro_text": "",
             "outro_text": "",
             "list_intro": "You have the right to:",
-            "list_items": "Access your personal data\nCorrect your personal data\nDelete your personal data (right to be forgotten)\nRestrict the processing of your personal data\nTransfer your personal data\nObject to the processing of your personal data\nWithdraw your consent to the processing of your data at any time",
+            "list_items": "1.\tWithdraw consent at any time\n\t2.\tAccess your personal data\n\t3.\tCorrect or update your data\n\t4.\tRequest deletion of your data\n\t5.\tRestrict processing\n\t6.\tObject to processing\n\t7.\tRequest data portability",
             "link_prefix": "To exercise these rights, please contact us at",
             "link_label": "biuro@empiretextile.pl.",
             "link_url": "mailto:biuro@empiretextile.pl",
@@ -171,8 +171,8 @@
         "policy_section_3W3nkt": {
           "type": "policy_section",
           "settings": {
-            "title": "9. Data Security",
-            "intro_text": "We take care of the security of your personal data and use\n\t\t\t\t\t\tappropriate technical and organizational measures to protect it from unauthorized access, loss,\n\t\t\t\t\t\tdestruction or modification.",
+            "title": "9.Cookies and Anonymous Data",
+            "intro_text": "We use cookies and similar technologies for technical, analytical, and marketing purposes. Cookies may be disabled via your browser settings. Disabling cookies may limit functionality.\n\nWe may also collect anonymized data (IP address, browser type, operating system) to ensure the safety and optimization of the website.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -186,8 +186,8 @@
         "policy_section_U6KRed": {
           "type": "policy_section",
           "settings": {
-            "title": "10. Cookies",
-            "intro_text": "Our website uses cookies to improve functionality and personalize\n\t\t\t\t\t\tour offerings. You can manage your cookie settings in your web browser.",
+            "title": "10. Data Security",
+            "intro_text": "Your data is stored securely on protected servers. Access is granted only to authorized employees.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -202,7 +202,7 @@
           "type": "policy_section",
           "settings": {
             "title": "11. Changes to the Privacy Policy",
-            "intro_text": "We reserve the right to make changes to this Privacy Policy. We\n\t\t\t\t\t\twill inform you of any changes on our website.",
+            "intro_text": "All updates will be posted on this page. In case of major changes, we may notify you via email or on the website.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -219,7 +219,7 @@
             "title": "12. Contact",
             "intro_text": "",
             "outro_text": "This Privacy Policy is intended to provide transparency in the\n\t\t\t\t\t\tprocessing of your personal data and to protect your privacy. Thank you for your trust and use of\n\t\t\t\t\t\tour services.",
-            "list_intro": "If you have any questions about this Privacy Policy, please                        contact:",
+            "list_intro": "If you have any questions about this Privacy Policy, please contact:",
             "list_items": "E-mail: <a href=\"mailto:biuro@empiretextile.pl\" class=\"right-privacypolicy__link-contact\">biuro@empiretextile.pl</a>\nPhone: <a href=\"tel:+48690984002\" class=\"right-privacypolicy__link-contact\">+48 690 984 002</a>\nAddress: <a href=\"https://maps.app.goo.gl/C1fSWvZNPy2DitAz6\" class=\"right-privacypolicy__link-contact\">Zbąszyńska 3V, 91-342 Łódź</a>",
             "link_prefix": "",
             "link_label": "",

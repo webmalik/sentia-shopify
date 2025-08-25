@@ -25,7 +25,7 @@
           "type": "menu_item",
           "settings": {
             "label": "Terms of use",
-            "url": "shopify://pages/terms-of-use",
+            "url": "shopify://pages/terms-of-sale",
             "icon_modifier": "--icon-non-categorized",
             "active": false
           }
@@ -51,8 +51,8 @@
         "policy_section_Lkaj3t": {
           "type": "policy_section",
           "settings": {
-            "title": "1. General Information",
-            "intro_text": "This Privacy Policy describes how we collect, use and protect the\n\t\t\t\t\t\tpersonal information of our customers and users of our website. We care about your privacy and the\n\t\t\t\t\t\tsecurity of your personal information.",
+            "title": "1. Right of withdrawal",
+            "intro_text": "You have the right to withdraw from the purchase contract within 14 days without giving any reason. The withdrawal period starts from the day you—or a third party designated by you—receive the goods.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -66,13 +66,13 @@
         "policy_section_RkaEAV": {
           "type": "policy_section",
           "settings": {
-            "title": "2. Data Administrator",
-            "intro_text": "",
+            "title": "2. Exceptions",
+            "intro_text": "Returns are not accepted for items that have been opened or used if they come into direct contact with the body, such as underwear, socks, or unsealed bed linen, due to hygiene and health protection reasons.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
-            "link_prefix": "The administrator of your personal data is Empiretextile Sp. z\t\t\t\t\t\to.o. based in Lubartowska 71A,20-123 Lublin. If you have any questions about this Privacy Policy,\t\t\t\t\t\tplease contact us by email at biuro@empiretextile.pl or by phone at",
-            "link_label": "+48 690 984 002.",
+            "link_prefix": "",
+            "link_label": "",
             "link_url": "tel:+48690984002",
             "link_target": "_self",
             "link_suffix": ""
@@ -81,11 +81,11 @@
         "policy_section_qHjrYE": {
           "type": "policy_section",
           "settings": {
-            "title": "3. What Data We Collect",
-            "intro_text": "We may collect the following personal data:",
+            "title": "3. Conditions for return",
+            "intro_text": "",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Name\nE-mail address\nDelivery address\nPhone number\nInformation about purchases and transactions\nInformation about the use of our website (cookies, IP address, browser data)",
+            "list_items": "•\tItems must be unused, unwashed, and in original packaging with tags.\n\t•\tPartial returns of bundled sets (multipacks) are not accepted—you must return the full set.",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -96,11 +96,11 @@
         "policy_section_KE9gDt": {
           "type": "policy_section",
           "settings": {
-            "title": "4. How We Use Data",
-            "intro_text": "Your personal data may be used for the following purposes:",
+            "title": "4. Return process",
+            "intro_text": "",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Fulfillment of orders and delivery of products\nPayment processing\nCustomer communication (order confirmations, updates, responses to inquiries)\nPersonalization of offerings and product recommendations\nInformation about purchases and transactions\nMarketing (if you have consented to receive marketing materials)\nAnalysis and improvement of our website and services",
+            "list_items": "a) Complete and submit the Withdrawal Form (available on our website).\nb) Package the item securely, include the form and original receipt.\nc) Ship the return at your own expense to the return address:\nEmpiretextile Sp. z o.o.\nUl. Zbąszyńska 3V\n91-342 Łódź, Poland",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -111,11 +111,11 @@
         "policy_section_Dhrgyp": {
           "type": "policy_section",
           "settings": {
-            "title": "5. Legal Basis for Data Processing",
-            "intro_text": "We process your personal data based on:",
+            "title": "5. Who pays shipping?",
+            "intro_text": "",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "Performance of a contract (Article 6(1)(b) of the RODO)\nConsent given by you (Article 6(1)(a) of the RODO)\nLegitimate interests of the controller (Article 6(1)(f) of the RODO)",
+            "list_items": "•\tYou cover the return shipping costs, unless the item is defective or sent in error.",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -126,8 +126,8 @@
         "policy_section_RXG8GK": {
           "type": "policy_section",
           "settings": {
-            "title": "6. Storage of Data",
-            "intro_text": "Your personal data will be stored for the period necessary to\n\t\t\t\t\t\tfulfill the purposes for which they were collected, unless longer storage is required or permitted\n\t\t\t\t\t\tby law.",
+            "title": "6. Refund processing",
+            "intro_text": "Once we receive and inspect your return, we will refund the full purchase amount (including standard shipping cost) within 14 days using your original payment method.",
             "outro_text": "",
             "list_intro": "",
             "list_items": "",
@@ -141,11 +141,11 @@
         "policy_section_wz686X": {
           "type": "policy_section",
           "settings": {
-            "title": "7. Sharing of Data",
-            "intro_text": "Your personal data may be shared with:",
+            "title": "7.  Complaints (damaged or incorrect items)",
+            "intro_text": "For defective or incorrect items, contact us at biuro@empiretextile.pl or use the Complaint Form. Complaints are processed within 14 business days.",
             "outro_text": "",
             "list_intro": "",
-            "list_items": "To service providers (e.g., courier companies, payment providers)\nTo business partners (if necessary to process your order)\nTo law enforcement agencies if required by law",
+            "list_items": "",
             "link_prefix": "",
             "link_label": "",
             "link_url": "",
@@ -156,74 +156,14 @@
         "policy_section_tHmC47": {
           "type": "policy_section",
           "settings": {
-            "title": "8. Users' Rights",
-            "intro_text": "",
+            "title": "8. Contact for questions",
+            "intro_text": "For any return-related inquiries, please reach us at: biuro@empiretextile.pl",
             "outro_text": "",
-            "list_intro": "You have the right to:",
-            "list_items": "Access your personal data\nCorrect your personal data\nDelete your personal data (right to be forgotten)\nRestrict the processing of your personal data\nTransfer your personal data\nObject to the processing of your personal data\nWithdraw your consent to the processing of your data at any time",
-            "link_prefix": "To exercise these rights, please contact us at",
-            "link_label": "biuro@empiretextile.pl.",
+            "list_intro": "",
+            "list_items": "",
+            "link_prefix": "",
+            "link_label": "",
             "link_url": "mailto:biuro@empiretextile.pl",
-            "link_target": "_self",
-            "link_suffix": ""
-          }
-        },
-        "policy_section_3W3nkt": {
-          "type": "policy_section",
-          "settings": {
-            "title": "9. Data Security",
-            "intro_text": "We take care of the security of your personal data and use\n\t\t\t\t\t\tappropriate technical and organizational measures to protect it from unauthorized access, loss,\n\t\t\t\t\t\tdestruction or modification.",
-            "outro_text": "",
-            "list_intro": "",
-            "list_items": "",
-            "link_prefix": "",
-            "link_label": "",
-            "link_url": "",
-            "link_target": "_self",
-            "link_suffix": ""
-          }
-        },
-        "policy_section_U6KRed": {
-          "type": "policy_section",
-          "settings": {
-            "title": "10. Cookies",
-            "intro_text": "Our website uses cookies to improve functionality and personalize\n\t\t\t\t\t\tour offerings. You can manage your cookie settings in your web browser.",
-            "outro_text": "",
-            "list_intro": "",
-            "list_items": "",
-            "link_prefix": "",
-            "link_label": "",
-            "link_url": "",
-            "link_target": "_self",
-            "link_suffix": ""
-          }
-        },
-        "policy_section_UPqXPh": {
-          "type": "policy_section",
-          "settings": {
-            "title": "11. Changes to the Privacy Policy",
-            "intro_text": "We reserve the right to make changes to this Privacy Policy. We\n\t\t\t\t\t\twill inform you of any changes on our website.",
-            "outro_text": "",
-            "list_intro": "",
-            "list_items": "",
-            "link_prefix": "",
-            "link_label": "",
-            "link_url": "",
-            "link_target": "_self",
-            "link_suffix": ""
-          }
-        },
-        "policy_section_zchQDf": {
-          "type": "policy_section",
-          "settings": {
-            "title": "12. Contact",
-            "intro_text": "",
-            "outro_text": "This Privacy Policy is intended to provide transparency in the\n\t\t\t\t\t\tprocessing of your personal data and to protect your privacy. Thank you for your trust and use of\n\t\t\t\t\t\tour services.",
-            "list_intro": "If you have any questions about this Privacy Policy, please                        contact:",
-            "list_items": "E-mail: <a href=\"mailto:biuro@empiretextile.pl\" class=\"right-privacypolicy__link-contact\">biuro@empiretextile.pl</a>\nPhone: <a href=\"tel:+48690984002\" class=\"right-privacypolicy__link-contact\">+48 690 984 002</a>\nAddress: <a href=\"https://maps.app.goo.gl/C1fSWvZNPy2DitAz6\" class=\"right-privacypolicy__link-contact\">Zbąszyńska 3V, 91-342 Łódź</a>",
-            "link_prefix": "",
-            "link_label": "",
-            "link_url": "",
             "link_target": "_self",
             "link_suffix": ""
           }
@@ -241,11 +181,7 @@
         "policy_section_Dhrgyp",
         "policy_section_RXG8GK",
         "policy_section_wz686X",
-        "policy_section_tHmC47",
-        "policy_section_3W3nkt",
-        "policy_section_U6KRed",
-        "policy_section_UPqXPh",
-        "policy_section_zchQDf"
+        "policy_section_tHmC47"
       ],
       "settings": {
         "menu_title": "Our Policies",

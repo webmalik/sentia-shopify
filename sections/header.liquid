@@ -89,12 +89,16 @@
         </select>
 
         <div class="actions-header__icons">
-          <a href="{% if customer %}{{ routes.account_url }}#saved{% else %}{{ section.settings.wishlist_url }}{% endif %}" class="actions-header__bookmarks">
-            <span class="--icon-heart"></span>
-            <span class="--icon-heart-hover"></span>
-          </a>
-          <a href="{{ routes.account_url }}" data-fls-dynamic=".menu__item--user, 768" class="actions-header__user --icon-user">Log in</a>
-          <button type="button" class="actions-header__cart --icon-bag"></button>
+			<a href="{% if customer %}{{ routes.account_url }}#saved{% else %}{{ section.settings.wishlist_url }}{% endif %}" class="actions-header__bookmarks">
+				{% render 'wishlist-icon' %}
+			</a>
+          	<a href="{{ routes.account_url }}" data-fls-dynamic=".menu__item--user, 768" class="actions-header__user">
+				{% render 'user-icon' %}
+				Log in
+			</a>
+			<button type="button" class="actions-header__cart">
+				{% render 'cart-icon' %}
+			</button>
         </div>
       </div>
     </div>
@@ -102,44 +106,101 @@
 </header>
 
 <script>
-  const getRedirectUrl = (langCode) => {
-    const currentLocale = Shopify.locale?.toLowerCase();
-    const defaultLocale = 'en';
-    if (langCode === currentLocale) return null;
+  // ===== КОНФІГ =====
+  const DEFAULT_LOCALE = 'en';
+  const EU_MARKET_COUNTRY = 'BE';     
+  const SUPPORTED_LOCALES = new Set(['en','de','pl']);
 
-    const path = window.location.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
-    const query = window.location.search;
+  // ===== ХЕЛПЕРИ =====
+  const stripLocaleFromPath = (p) => p.replace(/^\/[a-z]{2}(\/|$)/, '/');
+  const getCurrentLocale = () => (Shopify.locale || '').toLowerCase();
+  const getCurrentCountry = () => (document.documentElement.getAttribute('data-country') || '').toUpperCase();
 
-    return langCode === defaultLocale ? `${path}${query}` : `/${langCode}${path}${query}`;
+  const buildUrl = (locale, country) => {
+    const path = stripLocaleFromPath(location.pathname);
+    const qs = new URLSearchParams(location.search);
+    if (country) qs.set('country', country);
+    const prefix = (locale && locale !== DEFAULT_LOCALE) ? `/${locale}` : '';
+    return `${prefix}${path}${qs.toString() ? `?${qs}` : ''}`;
   };
 
-  // Тільки мовний селект
+  const safeRedirect = (url) => {
+    const key = 'wm_geo_applied';
+    if (sessionStorage.getItem(key) === url) return;
+    sessionStorage.setItem(key, url);
+    location.href = url;
+  };
+
+  const decideByCountry = (cc) => {
+    if (cc === 'DE') return { locale: 'de', country: 'DE' };
+    if (cc === 'PL') return { locale: 'pl', country: 'PL' };
+    return { locale: 'en', country: EU_MARKET_COUNTRY }; // інші країни
+  };
+
+  // IP → country, фолбек за мовою браузера
+  const detectCountry = async () => {
+    try {
+      const r = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+      if (!r.ok) throw 0;
+      const j = await r.json();
+      return String(j.country || '').toUpperCase(); // ISO2
+    } catch {
+      const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+      const iso2 = lang.slice(0,2).toLowerCase();
+      if (iso2 === 'de') return 'DE';
+      if (iso2 === 'pl') return 'PL';
+      return EU_MARKET_COUNTRY;
+    }
+  };
+
+  // ===== РУЧНІ ПЕРЕМИКАЧІ =====
+  // select.actions-header__lang
   document.addEventListener('selectCallback', (e) => {
     const select = e?.detail?.select || e.target;
-    if (!select) return;
+    if (!select || !select.matches('select.actions-header__lang')) return;
+    const loc = (select.value || '').toLowerCase().trim();
+    if (!SUPPORTED_LOCALES.has(loc)) return;
+    const target = (loc === 'de') ? { locale:'de', country:'DE' }
+                 : (loc === 'pl') ? { locale:'pl', country:'PL' }
+                 : { locale:'en', country: EU_MARKET_COUNTRY };
 
-    // фільтр: реагуємо лише на <select class="actions-header__lang">
-    if (!select.matches('select.actions-header__lang')) return;
-
-    const value = (select.value || '').toLowerCase().trim();
-    if (!value) return;
-
-    const redirectUrl = getRedirectUrl(value);
-    if (redirectUrl) window.location.href = redirectUrl;
+    if (getCurrentLocale() === target.locale) {
+      const q = new URLSearchParams(location.search);
+      if ((q.get('country') || '').toUpperCase() === target.country) return;
+    }
+    safeRedirect(buildUrl(target.locale, target.country));
   });
 
-  // Кліки по посиланнях мов (як було)
+  // посилання мов у меню
   document.addEventListener('DOMContentLoaded', () => {
-    const langLinks = document.querySelectorAll('.menu__lang-list a, .menu__lang-item a');
-    langLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const langCode = link.textContent.trim().toLowerCase();
-        const redirectUrl = getRedirectUrl(langCode);
-        if (redirectUrl) window.location.href = redirectUrl;
+    document.querySelectorAll('.menu__lang-list a, .menu__lang-item a').forEach((a) => {
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const text = a.textContent.trim().toLowerCase();
+        const loc = SUPPORTED_LOCALES.has(text) ? text : DEFAULT_LOCALE;
+        const target = (loc === 'de') ? { locale:'de', country:'DE' }
+                     : (loc === 'pl') ? { locale:'pl', country:'PL' }
+                     : { locale:'en', country: EU_MARKET_COUNTRY };
+        safeRedirect(buildUrl(target.locale, target.country));
       });
     });
   });
+
+  // ===== АВТО‑ГЕО (1 раз за сесію) =====
+  (async () => {
+    if (sessionStorage.getItem('wm_geo_applied')) return;
+    const curLoc = getCurrentLocale();
+    const curC   = getCurrentCountry();
+
+    const cc = await detectCountry();
+    const target = decideByCountry(cc);
+
+    if (target.locale === curLoc) {
+      const q = new URLSearchParams(location.search);
+      if ((q.get('country') || '').toUpperCase() === target.country) return;
+    }
+    safeRedirect(buildUrl(target.locale, target.country));
+  })();
 </script>
 
 
